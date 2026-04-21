@@ -1,0 +1,151 @@
+:root {
+  /* Color Palette */
+  --color-base: #FFFFFF;
+  --color-text: #222222;
+  --color-cyan: #00F0FF;
+  --color-magenta: #FF0055;
+  --color-yellow: #FFEA00;
+  --color-blue: #0033CC;
+  --color-bg-mesh: #F8FAFC;
+  
+  /* Fonts */
+  --font-heading: 'Outfit', 'Impact', sans-serif; /* アメコミ風インパクトサンセリフ */
+  --font-body: 'Noto Sans JP', sans-serif; /* シャープなゴシック体 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-base);
+  /* Medical Dot Mesh Background */
+  background-image: radial-gradient(var(--color-bg-mesh) 20%, transparent 20%);
+  background-size: 10px 10px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+}
+
+/* ユーティリティクラス */
+.eng-title {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  color: var(--color-base);
+  text-shadow: 
+    3px 3px 0 var(--color-text),
+    -1px -1px 0 var(--color-text),
+    1px -1px 0 var(--color-text),
+    -1px 1px 0 var(--color-text),
+    1px 1px 0 var(--color-text);
+}
+
+/* アメコミ風 装飾背景 */
+.logic-zone {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 240, 255, 0.05),
+    rgba(0, 240, 255, 0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+.heart-zone {
+  background: radial-gradient(
+    rgba(255, 0, 85, 0.1) 20%, 
+    transparent 20%
+  );
+  background-size: 20px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* セクション設定 */
+section {
+  padding: 80px 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   Floating Contact Button (Image Version)
+========================================================= */
+.floating-contact-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 270px; /* 画像内の文字がはっきり読めるよう、さらに1.5倍の超特大サイズへ拡大！ */
+  height: auto;
+  display: block;
+  z-index: 999;
+  cursor: pointer;
+  /* アニメーションで常に少しフワフワさせて気を引く */
+  animation: float-pop 3s ease-in-out infinite;
+  transition: transform 0.2s;
+}
+
+.floating-contact-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* 画像自体が際立つように軽くドロップシャドウを落とす */
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+  transition: filter 0.2s;
+}
+
+@keyframes float-pop {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.floating-contact-btn:hover {
+  animation: none; /* ホバー時はフワフワ停止 */
+  transform: translate(-3px, -3px) scale(1.05); /* 少し大きくなって浮く演出 */
+}
+
+/* ホバー時に影の色をマゼンタに変えてアメコミ風のフィードバック */
+.floating-contact-btn:hover .floating-contact-img {
+  filter: drop-shadow(8px 8px 0px var(--color-magenta)); 
+}
+
+.floating-contact-btn:active {
+  transform: translate(2px, 2px) scale(0.95);
+}
+.floating-contact-btn:active .floating-contact-img {
+  filter: drop-shadow(0px 0px 0px transparent);
+}
+
+/* スマホ対応 */
+@media (max-width: 900px) {
+  .floating-contact-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 210px; /* スマホでも文字がしっかり読めるよう、さらに1.5倍へ拡大！ */
+  }
+  .floating-contact-btn:hover {
+    transform: none; 
+  }
+  .floating-contact-btn:hover .floating-contact-img {
+    filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+  }
+}

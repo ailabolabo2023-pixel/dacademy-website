@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Dacademy Shooting Star Preview</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family: 'sans-serif';
+        }
+
+        /* 案6の背景を模したダミー背景 */
+        .background {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background-image: radial-gradient(#00ffff 10%, transparent 11%),
+                              radial-gradient(#ff00ff 10%, transparent 11%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .card {
+            width: 600px;
+            height: 300px;
+            background: white;
+            border: 4px solid black;
+            box-shadow: 10px 10px 0 rgba(0,0,0,1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* 流れ星のコンテナ */
+        .shooting-stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* 流れ星本体 */
+        .star {
+            position: absolute;
+            top: 50%; left: -100px;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ffff, #ffffff);
+            filter: drop-shadow(0 0 10px #00ffff);
+            border-radius: 50%;
+            opacity: 0;
+            transform: rotate(-15deg);
+        }
+
+        /* 異なる色の流れ星 */
+        .star.magenta {
+            background: linear-gradient(90deg, transparent, #ff00ff, #ffffff);
+            filter: drop-shadow(0 0 10px #ff00ff);
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0) rotate(-15deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(120vw, 30vh) rotate(-15deg);
+                opacity: 0;
+            }
+        }
+
+        /* 流れ星1: シアン */
+        .star1 {
+            top: 10%;
+            animation: shoot 3s linear infinite;
+            animation-delay: 0s;
+        }
+
+        /* 流れ星2: マゼンタ */
+        .star2 {
+            top: 40%;
+            animation: shoot 4s linear infinite;
+            animation-delay: 2s;
+        }
+
+        /* 流れ星3: シアン */
+        .star3 {
+            top: 70%;
+            animation: shoot 5s linear infinite;
+            animation-delay: 5s;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="shooting-stars">
+        <div class="star star1"></div>
+        <div class="star star2 magenta"></div>
+        <div class="star star3"></div>
+    </div>
+    <div class="container">
+        <div class="card">ここにプロフィールカードが入ります</div>
+    </div>
+</body>
+</html>

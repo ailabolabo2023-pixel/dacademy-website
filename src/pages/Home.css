@@ -1,0 +1,753 @@
+/* 画像のサイズにピッタリ合わせる見えない枠 */
+.hero-placeholder {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 80px); /* 画面の高さを絶対に超えないようにする */
+  object-fit: contain;
+  visibility: hidden;
+  display: block;
+}
+.pc-only { display: block !important; }
+.sp-only { display: none !important; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-height: calc(100vh - 80px); /* 枠自体も画面からはみ出さない */
+  background-color: #000000; /* 余白をぼかしではなく「黒」で引き締める */
+}
+
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 1.5s ease-in-out;
+  opacity: 0;
+}
+
+/* PC時のベース設定 */
+.slide-bg-1 {
+  background-image: url('/images/hero1.png');
+}
+.slide-bg-2 {
+  background-image: url('/images/hero2.png');
+}
+
+.slide-main-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: contain; /* 絶対に切り取られないようにする */
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2; /* ぼかし背景より手前 */
+}
+.slide-blur-bg {
+  display: none !important; /* 黒背景になったためぼかしレイヤーは完全オフ */
+}
+
+@media (max-width: 900px) {
+  .pc-only { display: none !important; }
+  .sp-only { display: block !important; }
+
+  .slide-bg-1 {
+    background-image: url('/images/hero1スマホ.png');
+  }
+  .slide-bg-2 {
+    background-image: url('/images/hero2スマホ.png');
+  }
+
+  .slide-main-img {
+    background-size: cover; /* コンテナが画像ピッタリのサイズになるので、coverで100%表示になります */
+    z-index: 2;
+  }
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+
+
+/* キャッチコピー等のテキストを画像に置き換え */
+.hero-text-section {
+  padding: 40px 20px;
+  text-align: center;
+  border-bottom: 4px solid var(--color-text);
+  border-top: 4px solid var(--color-text);
+  background-color: var(--color-yellow);
+}
+.section2-img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .hero-text-section {
+    padding: 20px 0; /* 左右の余白を完全にゼロにして、画面の端から端までめいっぱい広げる */
+  }
+}
+
+.eng-title {
+  color: var(--color-base);
+  text-shadow: 
+    3px 3px 0 var(--color-text),
+    -1px -1px 0 var(--color-text),
+    1px -1px 0 var(--color-text),
+    -1px 1px 0 var(--color-text),
+    1px 1px 0 var(--color-text);
+}
+
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.jp-sub-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--color-text);
+  margin-top: 5px;
+}
+
+.speech-bubble {
+  display: inline-block;
+  background-color: var(--color-base);
+  border: 4px solid var(--color-text);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--color-magenta);
+}
+
+.hero-subtext {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-top: 20px;
+  background: var(--color-base);
+  display: inline-block;
+  padding: 15px 25px;
+  border: 4px solid var(--color-text);
+  box-shadow: 6px 6px 0 var(--color-cyan);
+}
+
+/* =========================================================
+   NEWS & SEMINAR Section (Pop Art Style)
+========================================================= */
+.news-section {
+  background-color: var(--color-base);
+  padding: 80px 0;
+  border-bottom: 4px solid var(--color-text);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ニュース背景の流れ星コンテナ */
+.news-shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 流れ星の基本スタイル（蛍光色の★：大きく・シンプルに） */
+.news-star {
+  position: absolute;
+  font-size: 5rem; /* サイズを大幅にアップ */
+  color: #fff;
+  opacity: 0;
+  user-select: none;
+  z-index: 1;
+}
+
+/* 個別の流れ星の設定（10個+ロゴ：全域をカバー） */
+.news-star-1 { top: -150px; right: 0%; color: var(--color-cyan); filter: drop-shadow(0 0 30px var(--color-cyan)); animation: diagonal-shoot 7s linear infinite; animation-delay: 0s; }
+.news-star-2 { top: -150px; right: 20%; font-size: 6rem; color: var(--color-magenta); filter: drop-shadow(0 0 30px var(--color-magenta)); animation: diagonal-shoot 9s linear infinite; animation-delay: 1.5s; }
+.news-star-3 { top: -150px; right: 40%; font-size: 8rem; color: var(--color-yellow); filter: drop-shadow(0 0 30px var(--color-yellow)); animation: diagonal-shoot 8s linear infinite; animation-delay: 3s; }
+.news-star-4 { top: -150px; right: 60%; font-size: 7rem; color: var(--color-cyan); filter: drop-shadow(0 0 30px var(--color-cyan)); animation: diagonal-shoot 10s linear infinite; animation-delay: 5s; }
+.news-star-5 { top: -150px; right: 80%; font-size: 9rem; color: var(--color-magenta); filter: drop-shadow(0 0 30px var(--color-magenta)); animation: diagonal-shoot 7.5s linear infinite; animation-delay: 6s; }
+.news-star-6 { top: -150px; right: 100%; font-size: 5rem; color: var(--color-yellow); filter: drop-shadow(0 0 30px var(--color-yellow)); animation: diagonal-shoot 11s linear infinite; animation-delay: 8s; }
+
+/* 右側から飛び込んでくる星（これで画面下半分や左側もカバー） */
+.news-star-7 { top: 20%; right: -200px; font-size: 7rem; color: var(--color-cyan); filter: drop-shadow(0 0 30px var(--color-cyan)); animation: diagonal-shoot 8.5s linear infinite; animation-delay: 2s; }
+.news-star-8 { top: 50%; right: -200px; font-size: 5rem; color: var(--color-magenta); filter: drop-shadow(0 0 30px var(--color-magenta)); animation: diagonal-shoot 6s linear infinite; animation-delay: 4.5s; }
+.news-star-9 { top: 80%; right: -200px; font-size: 10rem; color: var(--color-yellow); filter: drop-shadow(0 0 40px var(--color-yellow)); animation: diagonal-shoot 10s linear infinite; animation-delay: 0.5s; }
+.news-star-10 { top: 40%; right: -200px; font-size: 6rem; color: var(--color-cyan); filter: drop-shadow(0 0 30px var(--color-cyan)); animation: diagonal-shoot 7.5s linear infinite; animation-delay: 7s; }
+
+/* ロゴの流れ星（特別出演：位置はReactでランダム化） */
+.news-star-logo {
+  position: absolute;
+  /* top は React の state で動的に変更されるため削除 */
+  right: -300px;
+  width: 250px;
+  height: auto;
+  opacity: 0;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+  animation: diagonal-shoot 10s linear infinite; /* 少しテンポアップ */
+  animation-delay: 2s;
+  z-index: 1;
+}
+
+.news-star-logo img {
+  width: 100%;
+  height: auto;
+}
+
+@keyframes diagonal-shoot {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-10vw, 10vh) rotate(90deg) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-120vw, 120vh) rotate(540deg) scale(1.2);
+  }
+  100% {
+    transform: translate(-160vw, 160vh) rotate(720deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.news-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* スマホ用の「良い感じ」を維持するためのメディアクエリ */
+@media (max-width: 900px) {
+  .news-star { font-size: 4rem; }
+  .news-star-1 { animation-duration: 3s; top: -100px; right: 0%; }
+  .news-star-2 { animation-duration: 4.5s; font-size: 3rem; top: -100px; right: 30%; }
+  .news-star-3 { animation-duration: 3.5s; font-size: 4rem; top: -100px; right: 60%; }
+  .news-star-4 { animation-duration: 4s; font-size: 3.5rem; top: -100px; right: 90%; }
+  .news-star-5 { animation-duration: 3s; font-size: 4.5rem; top: 10%; right: -150px; }
+  .news-star-6 { animation-duration: 5s; font-size: 2.5rem; top: 30%; right: -150px; }
+  .news-star-7 { animation-duration: 4s; top: 50%; right: -150px; }
+  .news-star-8 { animation-duration: 6s; top: 70%; right: -150px; }
+  .news-star-9 { animation-duration: 5s; top: 20%; right: -150px; }
+  .news-star-10 { animation-duration: 4.5s; top: 80%; right: -150px; }
+  
+  .news-star-logo {
+    width: 120px;
+    top: 40%;
+    right: -200px;
+    animation-duration: 8s;
+  }
+}
+
+/* NEWSセクション内のマスコット配置 */
+.news-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 共通のラッパースタイル */
+.mascot-megaphone-wrap,
+.mascot-sign-wrap {
+  position: absolute;
+  bottom: -20px;
+  width: 320px;
+  height: 420px;
+  overflow: hidden;
+  z-index: 10;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* メガホン（左側） */
+.mascot-megaphone-wrap {
+  left: 2%;
+  transform-origin: bottom left;
+  animation: megaphone-sway 5s ease-in-out infinite;
+}
+
+/* 看板（右側） */
+.mascot-sign-wrap {
+  right: 2%;
+  transform-origin: bottom right;
+  animation: sign-sway 6s ease-in-out infinite;
+}
+
+/* 画面が狭いPCでの端寄せ */
+@media (max-width: 1200px) {
+  .mascot-megaphone-wrap { left: 0; }
+  .mascot-sign-wrap { right: 0; }
+}
+
+/* 画像自体の制御（ペア画像をそのまま表示） */
+.mascot-megaphone-wrap img,
+.mascot-sign-wrap img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@keyframes megaphone-sway {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(1deg) scale(1.05); }
+}
+
+@keyframes sign-sway {
+  0%, 100% { transform: rotate(2deg) scale(1); }
+  50% { transform: rotate(-1deg) scale(1.08); }
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 20; /* マスコットより上に配置 */
+}
+
+.news-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 4px solid var(--color-text);
+  border-radius: 10px;
+  padding: 20px 25px;
+  text-decoration: none;
+  color: var(--color-text);
+  box-shadow: 6px 6px 0 var(--color-cyan);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.news-item:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 var(--color-magenta);
+}
+
+.news-date-badge {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 1.2rem;
+  color: var(--color-text);
+  letter-spacing: 1px;
+  margin-right: 25px;
+  white-space: nowrap;
+}
+
+.news-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.news-tag {
+  font-weight: 900;
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 3px solid var(--color-text);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 2px 2px 0 var(--color-text);
+}
+
+.news-tag.tag-magenta { background-color: var(--color-magenta); color: #fff; }
+.news-tag.tag-cyan { background-color: var(--color-cyan); color: var(--color-text); }
+.news-tag.tag-yellow { background-color: var(--color-yellow); color: var(--color-text); }
+
+.news-text {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.05rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 900px) {
+  .news-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .news-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* =========================================================
+   New Wide Profile Cards
+========================================================= */
+.profile-section {
+  background-color: #ffffff;
+  /* 案6：シームレスな網点パターンをタイル状に繰り返す */
+  background-image: url('/images/profile_bg_pop.png');
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 800px 800px; /* ドットの大きさを固定することで、拡大されてもボケない */
+  background-attachment: scroll;
+  padding: 80px 0;
+  border-bottom: 4px solid var(--color-text);
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+/* 案6のクリーンさを活かすため、オーバーレイのドットは極めて薄く設定 */
+.profile-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* スマホ表示時の最適化：ドットを少し小さくして密度を調整 */
+@media (max-width: 900px) {
+  .profile-section {
+    background-size: 400px 400px;
+  }
+}
+
+.home-prof-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.home-prof-card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 4px solid var(--color-text);
+  border-radius: 20px;
+  padding: 30px 40px;
+  position: relative;
+  box-shadow: 10px 10px 0 var(--color-text);
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* 太田先生背景：水色斜線 */
+.ota-bg {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(10, 186, 181, 0.05),
+    rgba(10, 186, 181, 0.05) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* 晋山先生背景：ピンクドット */
+.shinyama-bg {
+  background-image: radial-gradient(
+    rgba(224, 30, 90, 0.05) 20%,
+    transparent 20%
+  );
+  background-size: 20px 20px;
+}
+
+.home-prof-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.home-prof-img-wrap {
+  flex: 0 0 260px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.large-pop-frame {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 6px solid var(--color-text);
+  overflow: hidden;
+  box-shadow: 10px 10px 0 var(--color-cyan);
+  background-color: #fff;
+}
+
+.large-pop-frame.border-cyan {
+  box-shadow: 15px 15px 0 var(--color-magenta);
+}
+
+.large-prof-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-prof-info {
+  flex: 1;
+  padding: 0 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 背景を流れる大きな英語名 */
+.bg-text-ota, .bg-text-shinyama {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  font-size: 4rem;
+  font-family: 'Alfa Slab One', serif;
+  color: rgba(0, 0, 0, 0.03);
+  -webkit-text-stroke: 1px rgba(10, 186, 181, 0.1);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-text-shinyama {
+  -webkit-text-stroke: 2px rgba(224, 30, 90, 0.1);
+}
+
+.info-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.prof-rank {
+  font-weight: 500;
+  color: var(--color-text);
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.prof-name-main {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.en-small {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.prof-vision-highlight {
+  font-size: 1.15rem;
+  font-weight: 900;
+  padding-left: 15px;
+  border-left: 6px solid var(--color-yellow);
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.prof-vision-highlight.border-magenta {
+  border-left: 8px solid var(--color-magenta);
+}
+
+.prof-narrative {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: left;
+  margin-bottom: 35px;
+  color: #333;
+  font-weight: 500;
+}
+
+.btn-detail-wide {
+  display: inline-block;
+  padding: 15px 40px;
+  background-color: var(--color-cyan);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 900;
+  border: 4px solid var(--color-text);
+  box-shadow: 6px 6px 0 var(--color-text);
+  border-radius: 50px;
+  transition: 0.2s;
+}
+
+.btn-detail-wide.bg-magenta {
+  background-color: var(--color-magenta);
+  color: #fff;
+}
+
+.btn-detail-wide:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0 var(--color-text);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .home-prof-card {
+    flex-direction: column;
+    padding: 40px;
+    text-align: center;
+  }
+  .home-prof-card.reverse {
+    flex-direction: column-reverse; /* 写真（HTML後方）を上に持ってくる */
+    padding: 40px;
+    text-align: center;
+  }
+  .home-prof-info {
+    padding: 0;
+    margin-top: 30px;
+  }
+  .prof-vision-highlight {
+    border-left: none;
+    border-top: 8px solid var(--color-yellow);
+    padding: 20px 0 0;
+  }
+  .prof-details-list {
+    text-align: left;
+  }
+  .large-pop-frame {
+    width: 280px;
+    height: 280px;
+  }
+  .home-prof-img-wrap {
+    flex: 0 0 auto;
+  }
+  .bg-text-ota, .bg-text-shinyama {
+    font-size: 4rem;
+  }
+}
+
+
+
+/* =========================================================
+   Instagram Section (Pop Art Style)
+========================================================= */
+.instagram-section {
+  background-color: var(--color-base);
+  padding: 80px 0;
+  border-top: 4px solid var(--color-text);
+  border-bottom: 4px solid var(--color-text);
+}
+
+.instagram-grid {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.insta-item {
+  width: calc(20% - 12px); /* PCでは横に5つ並べる */
+  aspect-ratio: 1 / 1;
+  background-color: #fff;
+  border: 4px solid var(--color-text);
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--color-magenta);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: block;
+}
+
+.insta-item:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 8px 8px 0 var(--color-cyan);
+}
+
+.insta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.insta-item:hover .insta-overlay {
+  opacity: 1; /* マウスを乗せたらカメラアイコンがフッと出る */
+}
+
+.insta-icon {
+  font-size: 2.5rem;
+}
+
+.btn-insta {
+  display: inline-block;
+  background-color: var(--color-magenta);
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  box-shadow: 6px 6px 0 var(--color-text);
+}
+
+.btn-insta:hover {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .instagram-grid {
+    gap: 10px;
+  }
+  .insta-item {
+    width: calc(50% - 5px); /* スマホでは2列 */
+  }
+  .insta-fifth {
+    width: 100%; /* 5個目だけスマホでは横長にしてバランスを取る */
+    aspect-ratio: 2 / 1;
+  }
+}
+
+/* =========================================================
+   スマホ版専用 マスコット配置の再設定 
+   （PC版の完璧な設定には一切影響しません）
+========================================================= */
+@media (max-width: 900px) {
+  /* スマホ版でのみマスコットの大きさと位置を上書き */
+  .mascot-megaphone-wrap,
+  .mascot-sign-wrap {
+    width: 115px;
+    height: 140px; /* もう少し大きく存在感を出す */
+    bottom: auto;
+    top: 60px; /* 大きくなった分、重心を上にずらしてタイトルと揃える */
+    z-index: 1; /* ★タイトルより後ろのレイヤーへ */
+  }
+
+  .mascot-megaphone-wrap {
+    left: 5px; /* 大きくなった分、画面の端に少し寄せる */
+  }
+
+  .mascot-sign-wrap {
+    right: 5px; /* 大きくなった分、画面の端に少し寄せる */
+  }
+
+  /* ★タイトル文字を最前面に引き上げる */
+  .news-section .eng-title {
+    position: relative;
+    z-index: 5;
+  }
+}

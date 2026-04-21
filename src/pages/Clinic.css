@@ -1,0 +1,66 @@
+.clinic-hero {
+  text-align: center;
+  padding: 100px 0 60px;
+}
+.clinic-subtext {
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  color: var(--color-blue);
+  margin-top: 20px;
+}
+.clinic-intro {
+  margin-top: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.problem-box {
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+.problem-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+.speech-bubbles-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.speech-bubble-small {
+  display: inline-block;
+  background-color: var(--color-base);
+  border: 3px solid var(--color-text);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 4px 4px 0 var(--color-yellow);
+}
+
+.reason-cards {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+.reason-card {
+  flex: 1;
+  padding: 30px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 6px 6px 0 var(--color-blue);
+}
+.reason-num {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-yellow);
+  text-shadow: 2px 2px 0 var(--color-text), -1px -1px 0 var(--color-text), 1px -1px 0 var(--color-text), -1px 1px 0 var(--color-text), 1px 1px 0 var(--color-text);
+  margin-bottom: 10px;
+}
+.reason-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--color-text);
+  padding-bottom: 10px;
+}

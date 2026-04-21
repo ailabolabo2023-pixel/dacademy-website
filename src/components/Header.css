@@ -1,0 +1,125 @@
+.header {
+  background-color: var(--color-base);
+  border-bottom: 3px solid var(--color-text);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.logo {
+  height: 50px;
+}
+.logo-text {
+  font-family: 'Alfa Slab One', serif;
+  font-size: 26px;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  -webkit-text-stroke: 1.5px #84231b; /* 背景が白なので文字の輪郭線を追加 */
+  text-shadow: 3px 3px 0 #84231b; /* 画像のような右下への濃い赤茶色の影 */
+}
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.nav a {
+  font-weight: 700;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.nav a:hover {
+  color: var(--color-magenta);
+}
+.btn-contact {
+  background-color: var(--color-yellow);
+  border: 3px solid var(--color-text);
+  padding: 10px 20px;
+  font-weight: 900;
+  border-radius: 5px;
+  box-shadow: 4px 4px 0 var(--color-text);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-contact:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0 var(--color-text);
+}
+
+/* --- ここからスマホ（レスポンシブ）対応 --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 200;
+  padding: 10px;
+}
+.hamburger span {
+  width: 30px;
+  height: 4px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  /* ロゴのサイズ調整 */
+  .logo {
+    height: 40px;
+  }
+  .logo-text {
+    font-size: 20px;
+    letter-spacing: 1px;
+    -webkit-text-stroke: 1px #84231b;
+    text-shadow: 2px 2px 0 #84231b;
+  }
+  
+  /* メニューを隠してハンバーガーに置き換え */
+  .hamburger {
+    display: flex;
+  }
+  
+  /* 開いた時のバツ印アニメーション */
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* ドロワーメニューの設定 */
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 初期状態は画面外に隠す */
+    width: 250px;
+    height: 100vh;
+    background-color: var(--color-base);
+    border-left: 3px solid var(--color-text);
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 100px;
+    padding-left: 20px;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    z-index: 150;
+  }
+  .nav.open {
+    right: 0; /* クラスがついたら画面内に入れる */
+  }
+}
