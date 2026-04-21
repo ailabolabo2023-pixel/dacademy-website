@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './Programs.css'
 
 export default function Programs() {
+  useEffect(() => {
+    document.title = "育成プログラム・研修コース | 歯科衛生士セミナーのDacademy";
+  }, []);
+
   return (
     <div className="programs">
       <section className="prog-hero logic-zone">

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dacademy-website.vercel.app/sitemap.xml

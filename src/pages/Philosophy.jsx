@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './Philosophy.css'
 
 export default function Philosophy() {
+  useEffect(() => {
+    document.title = "コンセプトと想い（太田めぐみ・晋山直子）| 歯科衛生士セミナーのDacademy";
+  }, []);
+
   return (
     <div className="philosophy">
       <section className="ph-hero">

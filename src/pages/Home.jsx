@@ -18,16 +18,33 @@ export default function Home() {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev === 0 ? 1 : 0));
     }, 5000);
+
+    // タイトルを最新のキャッチコピーに設定
+    document.title = "【歯科衛生士セミナー】Dacademy｜笑顔で、ずっと向き合うために。";
+
     return () => clearInterval(timer);
   }, []);
 
   return (
     <div className="home">
+      {/* SEO用の隠し見出し（デザインには影響しません） */}
+      <h1 style={{ position: 'absolute', width: '1px', height: '1px', padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>
+        【歯科衛生士セミナー】Dacademy（ディーアカデミー）。日本臨床歯周病学会理事・太田めぐみと晋山直子が、SRPやインプラント保存の実習（ハンズオン）を直接指導。10年後も通用する精密な臨床技術を体系的に学べる、スキルアップに最適な実践的育成プログラムです。
+      </h1>
+
       {/* ファーストビュー (大きく使ってスライダー化) */}
       <section className="hero">
         {/* コンテナの高さを実際の画像サイズにピッタリ合わせるための見えない裏技 */}
-        <img src="/images/hero1.png" className="hero-placeholder pc-only" alt="placeholder" />
-        <img src="/images/hero1スマホ.png" className="hero-placeholder sp-only" alt="placeholder" />
+        <img 
+          src="/images/hero1.png" 
+          className="hero-placeholder pc-only" 
+          alt="歯科衛生士セミナー Dacademy メインバナー - 講師：太田めぐみ・晋山直子" 
+        />
+        <img 
+          src="/images/hero1スマホ.png" 
+          className="hero-placeholder sp-only" 
+          alt="歯科衛生士セミナー Dacademy メインバナー - 講師：太田めぐみ・晋山直子" 
+        />
         
         <div className="hero-slider">
           {/* スライド1 */}

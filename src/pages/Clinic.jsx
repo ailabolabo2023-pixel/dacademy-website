@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './Clinic.css'
 
 export default function Clinic() {
+  useEffect(() => {
+    document.title = "医院訪問研修・スタッフ育成 | 歯科衛生士セミナーのDacademy";
+  }, []);
+
   return (
     <div className="clinic">
       <section className="clinic-hero">

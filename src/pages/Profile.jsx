@@ -1,6 +1,11 @@
+import { useEffect } from 'react'
 import './Profile.css'
 
 export default function Profile() {
+  useEffect(() => {
+    document.title = "講師紹介（太田めぐみ・晋山直子）| 歯科衛生士セミナーのDacademy";
+  }, []);
+
   return (
     <div className="profile">
       <section className="prof-hero">

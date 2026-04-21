@@ -27,6 +27,10 @@ const DEFAULT_PROGRAMS = [
 // -------------------------------------------------------------
 
 export default function Contact() {
+  useEffect(() => {
+    document.title = "お問い合わせ・お申込み | 歯科衛生士セミナーのDacademy";
+  }, []);
+
   const [programOptions, setProgramOptions] = useState(DEFAULT_PROGRAMS);
   const [isLoading, setIsLoading] = useState(true);
   const [isSending, setIsSending] = useState(false);
