@@ -167,6 +167,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PROGRAM / SERVICE セクション */}
+      <section className="services-section">
+        <div className="container">
+          <div className="section-title-wrap">
+            <h2 className="eng-title">PROGRAM / SERVICE</h2>
+            <p className="jp-sub-title">選べる５つのサポート</p>
+          </div>
+
+          {/* 上段：個人向けのスキルアップ (3枚) */}
+          <div className="services-grid-top">
+            {/* カード1：3時間集中セミナー */}
+            <Link to="/programs" className="service-card card-cyan">
+              <div className="service-img-wrap">
+                <img src="/images/3時間集中セミナー.png" alt="3時間集中セミナー" className="service-img" />
+              </div>
+            </Link>
+
+            {/* カード2：SRP 3日間コース */}
+            <Link to="/programs" className="service-card card-magenta">
+              <div className="service-img-wrap">
+                <img src="/images/SPR３日間コース.png" alt="SRP 3日間コース" className="service-img" />
+              </div>
+            </Link>
+
+            {/* カード3：インプラントメインテナンスセミナー */}
+            <Link to="/programs" className="service-card card-yellow">
+              <div className="service-img-wrap">
+                <img src="/images/インプラントメインテナンス.png" alt="インプラントメインテナンスセミナー" className="service-img" />
+              </div>
+            </Link>
+          </div>
+
+          {/* 下段：医院全体・継続学習向け (2枚) */}
+          <div className="services-grid-bottom">
+            {/* カード4：オーダーメイド医院訪問研修 */}
+            <Link to="/programs" className="service-card card-cyan">
+              <div className="service-img-wrap">
+                <img src="/images/オーダーメイド医院訪問研修.png" alt="オーダーメイド医院訪問研修" className="service-img" />
+              </div>
+            </Link>
+
+            {/* カード5：ZOOM座談会 */}
+            <Link to="/programs" className="service-card card-magenta">
+              <div className="service-img-wrap">
+                <img src="/images/オンライン雑談会ZOOM.png" alt="ZOOM座談会" className="service-img" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Profile */}
       <section className="profile-section">
         <div className="container">
