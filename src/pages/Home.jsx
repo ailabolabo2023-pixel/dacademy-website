@@ -2,29 +2,10 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
 
-// --- [管理者様・開発者様へ] ---
-// Instagram連携サービス「Behold.so」で発行された「JSON Feed URL」をここに貼り付けてください。
-const BEHOLD_URL = ""; 
-// -----------------------------
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [logoPos, setLogoPos] = useState(10);
-  const [instaPosts, setInstaPosts] = useState([]);
-
-  // Instagramの投稿を取得
-  useEffect(() => {
-    if (!BEHOLD_URL) return;
-
-    fetch(BEHOLD_URL)
-      .then(res => res.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          setInstaPosts(data.slice(0, 5));
-        }
-      })
-      .catch(err => console.error("Instagram fetch error:", err));
-  }, []);
 
   // ロゴ出現時の高さをランダム管理するためのステート
   const randomizeLogo = () => {
@@ -43,18 +24,6 @@ export default function Home() {
 
     return () => clearInterval(timer);
   }, []);
-
-  // デフォルト（読み込み前・エラー時用）の画像リスト
-  const defaultInstaImages = [
-    { media_url: '/images/hero1スマホ.png', permalink: 'https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr' },
-    { media_url: '/images/太田さんセクション２スマホ.png', permalink: 'https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr' },
-    { media_url: '/images/hero2スマホ.png', permalink: 'https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr' },
-    { media_url: '/images/ota.png', permalink: 'https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr' },
-    { media_url: '/images/shinyama.png', permalink: 'https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr' }
-  ];
-
-  // 表示するデータを決定（APIから取れていればそれ、なければデフォルト）
-  const displayPosts = instaPosts.length > 0 ? instaPosts : defaultInstaImages;
 
   return (
     <div className="home">
@@ -282,21 +251,15 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 className="eng-title">INSTAGRAM</h2>
           </div>
-          <div className="instagram-grid">
-            {displayPosts.map((post, index) => (
-              <a 
-                key={index} 
-                href={post.permalink} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`insta-item ${index === 4 ? 'insta-fifth' : ''}`}
-                style={{ backgroundImage: `url('${post.media_url}')` }}
-              >
-                <div className="insta-overlay">
-                  <span className="insta-icon">📷</span>
-                </div>
-              </a>
-            ))}
+          <div className="instagram-banner-wrap">
+            <a 
+              href="https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="insta-banner-link"
+            >
+              <img src="/images/インスタバナー.png" alt="Dacademy 公式Instagram" className="insta-banner-img" />
+            </a>
           </div>
           <div style={{ textAlign: 'center', marginTop: '50px' }}>
             <a href="https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr" target="_blank" rel="noopener noreferrer" className="btn-contact btn-insta">
