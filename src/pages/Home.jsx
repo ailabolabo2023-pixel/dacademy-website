@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
 
@@ -6,6 +6,28 @@ import './Home.css'
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [logoPos, setLogoPos] = useState(10);
+  const [isInstaVisible, setIsInstaVisible] = useState(false);
+  const instaRef = useRef(null);
+
+  // Instagramセクションの出現を検知
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInstaVisible(true);
+        }
+      },
+      { threshold: 0.1 } // 10%見えたら発火
+    );
+
+    if (instaRef.current) {
+      observer.observe(instaRef.current);
+    }
+
+    return () => {
+      if (instaRef.current) observer.unobserve(instaRef.current);
+    };
+  }, []);
 
   // ロゴ出現時の高さをランダム管理するためのステート
   const randomizeLogo = () => {
@@ -247,11 +269,24 @@ export default function Home() {
 
       {/* Instagram Section */}
       <section className="instagram-section">
+        {/* 背景の巨大流れる文字 */}
+        <div className="instagram-bg-text-wrap">
+          <div className="insta-bg-text">
+            <span>I</span><span>N</span><span>S</span><span>T</span><span>A</span><span>G</span><span>R</span><span>A</span><span>M</span>
+            <span>I</span><span>N</span><span>S</span><span>T</span><span>A</span><span>G</span><span>R</span><span>A</span><span>M</span>
+            <span>I</span><span>N</span><span>S</span><span>T</span><span>A</span><span>G</span><span>R</span><span>A</span><span>M</span>
+            <span>I</span><span>N</span><span>S</span><span>T</span><span>A</span><span>G</span><span>R</span><span>A</span><span>M</span>
+          </div>
+        </div>
+
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <h2 className="eng-title">INSTAGRAM</h2>
           </div>
-          <div className="instagram-banner-wrap">
+          <div 
+            ref={instaRef} 
+            className={`instagram-banner-wrap ${isInstaVisible ? 'visible' : ''}`}
+          >
             <a 
               href="https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr" 
               target="_blank" 
