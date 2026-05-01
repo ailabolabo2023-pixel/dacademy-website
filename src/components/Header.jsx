@@ -21,12 +21,34 @@ export default function Header() {
         </button>
 
         <nav className={`nav ${isOpen ? 'open' : ''}`}>
-          <Link to="/" onClick={() => setIsOpen(false)}>TOP</Link>
-          <Link to="/philosophy" onClick={() => setIsOpen(false)}>Dacademyについて</Link>
-          <Link to="/programs" onClick={() => setIsOpen(false)}>育成プログラム</Link>
-          <Link to="/clinic" onClick={() => setIsOpen(false)}>医院訪問研修</Link>
-          <Link to="/profile" onClick={() => setIsOpen(false)}>プロフィール・活動実績</Link>
-          <Link to="/contact" className="btn-contact" onClick={() => setIsOpen(false)}>お問い合わせ・お申し込み</Link>
+          <Link to="/" onClick={() => setIsOpen(false)} className="nav-item">
+            <span className="nav-jp">トップ</span>
+            <span className="nav-en">TOP</span>
+          </Link>
+          <Link to="/philosophy" onClick={() => setIsOpen(false)} className="nav-item">
+            <span className="nav-jp">Dacademyとは</span>
+            <span className="nav-en">CONCEPT</span>
+          </Link>
+          <Link to="/news" onClick={() => setIsOpen(false)} className="nav-item">
+            <span className="nav-jp">最新情報</span>
+            <span className="nav-en">NEWS & SEMINAR</span>
+          </Link>
+          <Link to="/programs" onClick={() => setIsOpen(false)} className="nav-item">
+            <span className="nav-jp">コース内容</span>
+            <span className="nav-en">PROGRAM / SERVICE</span>
+          </Link>
+          <Link to="/profile" onClick={() => setIsOpen(false)} className="nav-item">
+            <span className="nav-jp">講師紹介</span>
+            <span className="nav-en">PROFILE</span>
+          </Link>
+          <a href="https://www.instagram.com/d_academy2024?igsh=dXlwbXV1N3Awd2Nt&utm_source=qr" target="_blank" rel="noopener noreferrer" className="nav-item" onClick={() => setIsOpen(false)}>
+            <span className="nav-jp">インスタグラム</span>
+            <span className="nav-en">INSTAGRAM</span>
+          </a>
+          <Link to="/contact" className="btn-contact" onClick={() => setIsOpen(false)}>
+            <span className="nav-jp">お問い合わせ</span>
+            <span className="nav-en">CONTACT</span>
+          </Link>
         </nav>
       </div>
     </header>

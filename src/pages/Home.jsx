@@ -220,46 +220,54 @@ export default function Home() {
           <div className="home-prof-container">
             {/* 太田先生カード */}
             <div className="home-prof-card ota-bg">
-              <div className="home-prof-img-wrap">
-                <div className="large-pop-frame">
-                  <img src="/images/ota.png" alt="太田 めぐみ" className="large-prof-img" />
-                </div>
+              <div className="home-prof-header-top">
+                <h3 className="prof-rank">DENTALCARE HEALTH PROMOTION 代表 / Dacademy 主催・講師</h3>
+                <h4 className="prof-name-main">太田 めぐみ <span className="en-small">Megumi ŌTA</span></h4>
               </div>
-              <div className="home-prof-info">
-                <h2 className="bg-text-ota">MEGUMI OTA</h2>
-                <div className="info-inner">
-                  <h3 className="prof-rank">DENTALCARE HEALTH PROMOTION 代表 / Dacademy 主催・講師</h3>
-                  <h4 className="prof-name-main">太田 めぐみ <span className="en-small">Megumi ŌTA</span></h4>
-                  <div className="prof-vision-highlight">
-                    「10年、20年先を見据えた精密な臨床で、生涯にわたる健康をプロデュース」
+              <div className="home-prof-body-split">
+                <div className="home-prof-img-wrap">
+                  <div className="large-pop-frame">
+                    <video src="/images/プロフィール太田.mp4" autoPlay loop muted playsInline alt="太田 めぐみ" className="large-prof-img" />
                   </div>
-                  <p className="prof-narrative">
-                    日本臨床歯周病学会の認定歯科衛生士・指導歯科衛生士として、長年にわたり臨床の最前線で研鑽を積む。特に歯周病治療とインプラントケアにおいて高度な専門性を有し、同学会の関西支部理事も務めるなど、業界の発展にも寄与している。2024年に「DENTALCARE HEALTH PROMOTION」を設立し、歯科衛生士の育成や地域社会への健康増進活動に注力。2025年の大阪・関西万博での講演をはじめ、多方面で「口腔から始まる健康」の重要性を発信し続けている。
-                  </p>
-                  <Link to="/profile" className="btn-detail-wide">詳しくはこちら <span>▶</span></Link>
+                </div>
+                <div className="home-prof-info">
+                  <h2 className="bg-text-ota">MEGUMI OTA</h2>
+                  <div className="info-inner">
+                    <div className="prof-vision-highlight">
+                      「10年、20年先を見据えた精密な臨床で、生涯にわたる健康をプロデュース」
+                    </div>
+                    <p className="prof-narrative">
+                      日本臨床歯周病学会の認定歯科衛生士・指導歯科衛生士として、長年にわたり臨床の最前線で研鑽を積む。特に歯周病治療とインプラントケアにおいて高度な専門性を有し、同学会の関西支部理事も務めるなど、業界の発展にも寄与している。2024年に「DENTALCARE HEALTH PROMOTION」を設立し、歯科衛生士の育成や地域社会への健康増進活動に注力。2025年の大阪・関西万博での講演をはじめ、多方面で「口腔から始まる健康」の重要性を発信し続けている。
+                    </p>
+                    <Link to="/profile" className="btn-detail-wide">詳しくはこちら <span>▶</span></Link>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* 晋山先生カード */}
-            <div className="home-prof-card shinyama-bg reverse">
-              <div className="home-prof-info">
-                <h2 className="bg-text-shinyama">NAOKO SHINYAMA</h2>
-                <div className="info-inner">
-                  <h3 className="prof-rank">おくだ歯科医院 歯周病・インプラントセンター 主任歯科衛生士 / Dacademy 主催・講師</h3>
-                  <h4 className="prof-name-main">晋山 直子 <span className="en-small">Naoko SHINYAMA</span></h4>
-                  <div className="prof-vision-highlight border-magenta">
-                    「世界で学んだ多角的な視点と、確かな専門技術で一人ひとりに寄り添うケアを」
-                  </div>
-                  <p className="prof-narrative">
-                    国内での豊富な臨床経験に加え、オーストラリアやイギリスでの海外研修・歯科勤務を経て培ったグローバルな視点を併せ持つ。イギリスでは「Diploma for Nurse Management」を取得し、臨床のみならず医院マネジメントの専門性も追求。現在はおくだ歯科医院の主任歯科衛生士としてチームを牽引。専門資格を活かした学術発表から、地域社会への貢献活動まで多岐にわたる活動を通じて、歯科保健の普及と後進の育成に邁進している。
-                  </p>
-                  <Link to="/profile" className="btn-detail-wide bg-magenta">詳しくはこちら <span>▶</span></Link>
-                </div>
+            <div className="home-prof-card shinyama-bg">
+              <div className="home-prof-header-top">
+                <h3 className="prof-rank">おくだ歯科医院 歯周病・インプラントセンター 主任歯科衛生士 / Dacademy 主催・講師</h3>
+                <h4 className="prof-name-main">晋山 直子 <span className="en-small">Naoko SHINYAMA</span></h4>
               </div>
-              <div className="home-prof-img-wrap">
-                <div className="large-pop-frame border-cyan shadow-magenta">
-                  <img src="/images/shinyama.png" alt="晋山 直子" className="large-prof-img" />
+              <div className="home-prof-body-split">
+                <div className="home-prof-img-wrap">
+                  <div className="large-pop-frame border-cyan shadow-magenta">
+                    <video src="/images/晋山プロフィール.mp4" autoPlay loop muted playsInline alt="晋山 直子" className="large-prof-img" />
+                  </div>
+                </div>
+                <div className="home-prof-info">
+                  <h2 className="bg-text-shinyama">NAOKO SHINYAMA</h2>
+                  <div className="info-inner">
+                    <div className="prof-vision-highlight border-magenta">
+                      「世界で学んだ多角的な視点と、確かな専門技術で一人ひとりに寄り添うケアを」
+                    </div>
+                    <p className="prof-narrative">
+                      国内での豊富な臨床経験に加え、オーストラリアやイギリスでの海外研修・歯科勤務を経て培ったグローバルな視点を併せ持つ。イギリスでは「Diploma for Nurse Management」を取得し、臨床のみならず医院マネジメントの専門性も追求。現在はおくだ歯科医院の主任歯科衛生士としてチームを牽引。専門資格を活かした学術発表から、地域社会への貢献活動まで多岐にわたる活動を通じて、歯科保健の普及と後進の育成に邁進している。
+                    </p>
+                    <Link to="/profile" className="btn-detail-wide bg-magenta">詳しくはこちら <span>▶</span></Link>
+                  </div>
                 </div>
               </div>
             </div>
