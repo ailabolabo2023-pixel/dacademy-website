@@ -14,7 +14,7 @@ export default function Philosophy() {
           entry.target.classList.add('is-visible');
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.3 });
 
     // アニメーション対象の要素を監視
     const elements = document.querySelectorAll('.animate-on-scroll');
@@ -35,7 +35,6 @@ export default function Philosophy() {
           {/* スマホ用画像 */}
           <img src="/images/Dacademyとはヒーロー画像_スマホ.png" alt="Dacademyとは CONCEPT ヒーロー スマホ" className="concept-hero-base-img sp-only" />
           
-          {/* 画像の上にテキストを絶対配置 */}
           <div className="concept-hero-text-overlay">
             <div className="concept-hero-header">
               <h1 className="concept-title">Dacademyとは</h1>
@@ -55,8 +54,13 @@ export default function Philosophy() {
           </div>
         </div>
       </section>
-      {/* 2. Dacademyとは（HTML構成＆文字アニメーション） */}
+
+      {/* 2. Dacademyとは */}
       <section className="concept-about-html">
+        <div className="concept-floating-decor decor-1">✦</div>
+        <div className="concept-floating-decor decor-2">✦</div>
+        <div className="concept-floating-decor decor-3">＋</div>
+        
         <div className="container">
           <div className="concept-about-content">
             <h2 className="section-elegant-title animate-on-scroll fade-up">
@@ -75,7 +79,7 @@ export default function Philosophy() {
         </div>
       </section>
 
-      {/* 3. Dacademyが大切にしていること（画像ベースのレイアウト再現） */}
+      {/* 3. Dacademyが大切にしていること */}
       <section className="concept-values-html">
         <div className="container">
           <div className="values-box animate-on-scroll fade-up">
@@ -86,15 +90,9 @@ export default function Philosophy() {
             </h2>
             
             <div className="values-grid">
-              {/* アイテム 1 */}
               <div className="value-item animate-on-scroll fade-up delay-1">
                 <div className="value-icon-wrapper">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon">
-                    <path d="M12 4c-3-2-7 0-7 4 0 1.5.5 3 1.5 4-.5 1-1 2.5-1 4 0 2 1.5 3.5 3.5 3.5 1 0 2-.5 2.5-1.5.5 1 1.5 1.5 2.5 1.5s2-.5 2.5-1.5c.5 1 1.5 1.5 2.5 1.5 2 0 3.5-1.5 3.5-3.5 0-1.5-.5-3-1-4 1-1 1.5-2.5 1.5-4 0-4-4-6-7-4z" />
-                    <path d="M12 4v16" />
-                    <path d="M12 8c-1-1-2.5-1-4 0" />
-                    <path d="M12 12c-1-1-2.5-1-4 0" />
-                  </svg>
+                  <img src="/images/img1.png" alt="感覚を、論理へ" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">感覚を、論理へ。</h3>
                 <p className="value-item-text">
@@ -104,15 +102,9 @@ export default function Philosophy() {
                 </p>
               </div>
 
-              {/* アイテム 2 */}
               <div className="value-item animate-on-scroll fade-up delay-2">
                 <div className="value-icon-wrapper">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon">
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
-                    <path d="M9 14l2 2 4-4" />
-                    <path d="M9 10h6" />
-                  </svg>
+                  <img src="/images/img2.png" alt="現場で使える学び" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">現場で使える学び</h3>
                 <p className="value-item-text">
@@ -122,15 +114,9 @@ export default function Philosophy() {
                 </p>
               </div>
 
-              {/* アイテム 3 */}
               <div className="value-item animate-on-scroll fade-up delay-3">
                 <div className="value-icon-wrapper">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon">
-                    <path d="M12 22V12" />
-                    <path d="M12 12C12 7 17 6 20 5c0 5-1 10-8 7z" />
-                    <path d="M12 12C12 7 7 6 4 5c0 5 1 10 8 7z" />
-                    <path d="M8 22h8" />
-                  </svg>
+                  <img src="/images/img3.png" alt="学び続ける環境" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">学び続ける環境</h3>
                 <p className="value-item-text">
@@ -155,12 +141,11 @@ export default function Philosophy() {
           <div className="future-grid">
             <div className="future-item animate-on-scroll fade-up delay-1">
               <div className="future-image-wrapper">
-                {/* 丸い画像が入る場所（プレースホルダーとしてアイコンを設定） */}
-                <svg viewBox="0 0 24 24" fill="none" stroke="#00bcd4" strokeWidth="1" className="future-svg"><path d="M12 2C7.5 2 4 5.5 4 10c0 4 3 6 5 9 1 1.5 2 3 3 3s2-1.5 3-3c2-3 5-5 5-9 0-4.5-3.5-8-8-8z"/><path d="M12 10a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                <img src="/images/プレース①.png" alt="目指す未来1" className="future-img" />
               </div>
               <h3 className="future-item-title">
                 歯科衛生士一人ひとりの成長を支え、<br />
-                クリニックの価値の質を高める。
+                クリニックの価値を高める。
               </h3>
               <p className="future-item-text">
                 学びが自信となり、患者さんへのケアが変わる。<br />
@@ -173,9 +158,8 @@ export default function Philosophy() {
             </div>
 
             <div className="future-item animate-on-scroll fade-up delay-3">
-              <div className="future-image-wrapper pink-bg">
-                {/* 丸い画像が入る場所（プレースホルダー） */}
-                <svg viewBox="0 0 24 24" fill="none" stroke="#ff7eb3" strokeWidth="1" className="future-svg"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78v0z"/></svg>
+              <div className="future-image-wrapper">
+                <img src="/images/プレース②.png" alt="目指す未来2" className="future-img" />
               </div>
               <h3 className="future-item-title">
                 学びを、患者さんの笑顔へ。
@@ -183,7 +167,7 @@ export default function Philosophy() {
               <p className="future-item-text">
                 確かな知識と心のあるケアで、<br />
                 患者さんの健康と笑顔を守る。<br />
-                その先にも、Dacademyは全力でサポートします。
+                その先も、Dacademyは全力でサポートします。
               </p>
             </div>
           </div>
@@ -202,28 +186,28 @@ export default function Philosophy() {
             <div className="values-grid four-cols">
               <div className="value-item animate-on-scroll fade-up delay-1">
                 <div className="value-icon-wrapper outline-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                  <img src="/images/t1.png" alt="基礎から見直したい" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">基礎から見直したい</h3>
                 <p className="value-item-text">知識や手技の基礎を<br/>しっかり整理したい方</p>
               </div>
               <div className="value-item animate-on-scroll fade-up delay-2">
                 <div className="value-icon-wrapper outline-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><path d="M12 2C7.5 2 4 5.5 4 10c0 4 3 6 5 9 1 1.5 2 3 3 3s2-1.5 3-3c2-3 5-5 5-9 0-4.5-3.5-8-8-8z"/></svg>
+                  <img src="/images/t2.png" alt="SRPを深めたい" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">SRPを深めたい</h3>
                 <p className="value-item-text">SRPの理論を深め、<br/>確実な技術を身につけたい方</p>
               </div>
               <div className="value-item animate-on-scroll fade-up delay-3">
                 <div className="value-icon-wrapper outline-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <img src="/images/t3.png" alt="インプラントメインテナンスを学びたい" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">インプラントメインテナンス<br/>を学びたい</h3>
                 <p className="value-item-text">インプラントの基礎から<br/>メインテナンスまで学びたい方</p>
               </div>
               <div className="value-item animate-on-scroll fade-up delay-4">
                 <div className="value-icon-wrapper outline-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <img src="/images/t4.png" alt="現場で活かしたい" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">現場で活かしたい</h3>
                 <p className="value-item-text">学んだことを現場で活かし、<br/>患者さんに貢献したい方</p>
@@ -243,11 +227,10 @@ export default function Philosophy() {
               <span className="sparkle">✦</span>
             </h2>
             <div className="flow-grid">
-              
               <div className="flow-step animate-on-scroll fade-up delay-1">
                 <div className="flow-badge">1</div>
                 <div className="value-icon-wrapper no-border">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                  <img src="/images/f1.png" alt="学びの流れ1" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">学ぶ</h3>
                 <p className="value-item-text">基礎知識や理論を<br/>わかりやすくインプット。</p>
@@ -258,10 +241,10 @@ export default function Philosophy() {
               <div className="flow-step animate-on-scroll fade-up delay-2">
                 <div className="flow-badge">2</div>
                 <div className="value-icon-wrapper no-border">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                  <img src="/images/f2.png" alt="学びの流れ2" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">実践する</h3>
-                <p className="value-item-text">臨床で使える技術を<br/>動画や教材でインプット。</p>
+                <p className="value-item-text">実技やワークを通して、<br/>臨床で使える力を身につける。</p>
               </div>
 
               <div className="flow-arrow animate-on-scroll fade-up delay-3"></div>
@@ -269,7 +252,7 @@ export default function Philosophy() {
               <div className="flow-step animate-on-scroll fade-up delay-3">
                 <div className="flow-badge">3</div>
                 <div className="value-icon-wrapper no-border">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /><rect x="8" y="2" width="8" height="4" rx="1" ry="1" /><path d="M9 14l2 2 4-4" /><path d="M9 10h6" /></svg>
+                  <img src="/images/f3.png" alt="学びの流れ3" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">振り返る</h3>
                 <p className="value-item-text">ケースや症例を振り返り、<br/>理解を深める。</p>
@@ -280,12 +263,11 @@ export default function Philosophy() {
               <div className="flow-step animate-on-scroll fade-up delay-4">
                 <div className="flow-badge">4</div>
                 <div className="value-icon-wrapper no-border">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="value-svg-icon"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+                  <img src="/images/f4.png" alt="学びの流れ4" className="value-icon-img" />
                 </div>
                 <h3 className="value-item-title">成長する</h3>
                 <p className="value-item-text">学びを積み重ね、<br/>自信と成果を積み重ねる。</p>
               </div>
-
             </div>
           </div>
         </div>
