@@ -11,10 +11,12 @@ export default function Philosophy() {
       {/* 1. ヒーローセクション */}
       <section className="concept-hero">
         <div className="concept-hero-image-container">
-          {/* 画像を背景ではなく実体として配置（これで縦横比が固定されます） */}
-          <img src="/images/Dacademyとはヒーロー画像.png" alt="Dacademyとは CONCEPT ヒーロー" className="concept-hero-base-img" />
+          {/* PC用画像 */}
+          <img src="/images/Dacademyとはヒーロー画像.png" alt="Dacademyとは CONCEPT ヒーロー PC" className="concept-hero-base-img pc-only" />
+          {/* スマホ用画像 */}
+          <img src="/images/Dacademyとはヒーロー画像_スマホ.png" alt="Dacademyとは CONCEPT ヒーロー スマホ" className="concept-hero-base-img sp-only" />
           
-          {/* 画像の上の左側（赤枠）にテキストを絶対配置 */}
+          {/* 画像の上にテキストを絶対配置 */}
           <div className="concept-hero-text-overlay">
             <div className="concept-hero-header">
               <h1 className="concept-title">Dacademyとは</h1>

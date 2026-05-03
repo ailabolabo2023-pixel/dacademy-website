@@ -16,6 +16,8 @@
   height: auto;
   display: block;
 }
+.concept-hero-base-img.pc-only { display: block; }
+.concept-hero-base-img.sp-only { display: none; }
 /* テキストを赤枠部分にピッタリ乗せる絶対配置 */
 .concept-hero-text-overlay {
   position: absolute;
@@ -106,19 +108,30 @@
   animation: slideUpFadeIn 0.8s ease-out 0.3s forwards; /* 0.3秒遅れて出現 */
 }
 @media (max-width: 900px) {
+  .concept-hero-base-img.pc-only { display: none; }
+  .concept-hero-base-img.sp-only { display: block; }
+
   .concept-hero-text-overlay {
-    position: relative; /* スマホでは画像に重ねず、画像の下に配置して読みやすくする */
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: absolute;
+    top: 3%; /* 少し上に引き上げる */
+    left: 5%;
+    width: 90%;
     max-width: 100%;
-    padding: 30px 20px;
+    padding: 0;
   }
-  .concept-main-copy {
-    font-size: 1.8rem;
+  .concept-hero-header {
+    margin-bottom: 10px; /* 見出し下の余白を縮小 */
   }
   .concept-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* 少し小さく */
+  }
+  .concept-main-copy {
+    font-size: 1.7rem;
+    margin-bottom: 10px; /* メインコピー下の余白を縮小 */
+  }
+  .concept-sub-copy {
+    font-size: 0.95rem; /* 最後の2行を少し小さく */
+    line-height: 1.5;   /* 行間を少し詰める */
   }
 }
 
