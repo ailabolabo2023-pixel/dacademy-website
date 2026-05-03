@@ -4,7 +4,8 @@ import './AudioPlayer.css';
 // プレイリスト（再生したい順番でMP3ファイルを並べる）
 const PLAYLIST = [
   "/images/あなたの手が紡ぐ笑顔 ～Dacademy～ .mp3",
-  "/images/小さな一歩が、未来を変える ～Dacademy～.mp3"
+  "/images/小さな一歩が、未来を変える ～Dacademy～.mp3",
+  "/images/静かなライト  ～Dacademy～.mp3"
 ];
 
 export default function AudioPlayer() {
