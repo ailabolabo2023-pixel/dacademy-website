@@ -8,18 +8,25 @@ export default function Philosophy() {
 
   return (
     <div className="philosophy">
-      <section className="ph-hero">
-        <div className="container">
-          <h1 className="hero-catch">
-            <span className="speech-bubble">「お掃除」から、</span><br/>
-            <span className="eng-title">「人生に伴走するプロ」へ。</span>
-          </h1>
-          <p className="ph-hero-subtext">技術を論理へ。ケアを心へ。</p>
-          <div className="ph-intro-box">
-            <p>
-              歯科衛生士という仕事は、単なる「お掃除」の担当ではありません。<br/>
-              患者様が「100歳まで自分の歯で美味しく食べる」という未来を支える、極めて重要な医療行為です。<br/>
-              その責任と誇りを、私たちはここで再定義します。
+      {/* 1. ヒーローセクション */}
+      <section className="concept-hero">
+        <div className="concept-hero-image-container">
+          {/* 画像を背景ではなく実体として配置（これで縦横比が固定されます） */}
+          <img src="/images/Dacademyとはヒーロー画像.png" alt="Dacademyとは CONCEPT ヒーロー" className="concept-hero-base-img" />
+          
+          {/* 画像の上の左側（赤枠）にテキストを絶対配置 */}
+          <div className="concept-hero-text-overlay">
+            <div className="concept-hero-header">
+              <h1 className="concept-title">Dacademyとは</h1>
+              <span className="concept-en">CONCEPT</span>
+            </div>
+            <h2 className="concept-main-copy">
+              感覚を、論理へ。<br/>
+              <span className="highlight-text">歯科衛生士の“確かな技術”を育てる。</span>
+            </h2>
+            <p className="concept-sub-copy">
+              実践に役立つ学びを通して、臨床力と自信を育み、<br/>
+              患者さんにより良いケアを届けられる衛生士を目指します。
             </p>
           </div>
         </div>

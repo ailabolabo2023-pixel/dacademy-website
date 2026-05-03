@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>請求書 雛形 | えぇ塩梅屋</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+    <!-- PDF生成ライブラリ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #D4AF37;
+            --pine-green: #2D5A27;
+            --text-color: #2F2F2F;
+        }
+
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
+
+        body {
+            margin: 0; padding: 40px;
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background-color: #eee;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .toolbar {
+            width: 210mm; background: linear-gradient(135deg, #333, #111);
+            color: white; padding: 15px 30px; margin-bottom: 25px;
+            border-radius: 12px; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-group { display: flex; gap: 10px; }
+
+        .btn-action {
+            border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px;
+            transition: 0.2s;
+        }
+        .btn-print { background: linear-gradient(to bottom, #E6C665, var(--primary-color)); color: #4a3800; }
+        .btn-pdf { background-color: #f44336; color: #fff; }
+        .btn-record { background-color: var(--pine-green); color: #fff; }
+        .btn-action:hover { transform: translateY(-1px); opacity: 0.9; }
+
+        .page {
+            width: 210mm; height: 296mm; padding: 25mm 20mm;
+            background: white; position: relative; color: var(--text-color);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .header { display: flex; justify-content: space-between; margin-bottom: 40px; }
+        .title {
+            font-size: 38px; font-family: 'Klee One', serif;
+            letter-spacing: 0.8rem; border-bottom: 4px solid var(--text-color);
+            margin-bottom: 30px; display: inline-block; padding-right: 30px;
+        }
+
+        .recipient-name {
+            font-size: 24px; border-bottom: 2px solid var(--text-color);
+            margin-bottom: 10px; min-width: 250px; display: inline-block;
+        }
+
+        .issuer-info { width: 300px; text-align: right; font-size: 13px; position: relative; }
+        .issuer-name { font-size: 22px; font-weight: bold; margin-bottom: 12px; font-family: 'Klee One', serif; color: var(--pine-green); }
+        
+        .total-box {
+            background-color: #f8f8f8; padding: 15px 25px;
+            border: 2px solid var(--text-color); margin: 30px 0;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .total-amount { font-size: 34px; font-family: 'Klee One', serif; font-weight: bold; }
+
+        .items-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .items-table th { background: #333; color: #fff; padding: 10px; font-size: 14px; }
+        .items-table td { padding: 10px; border-bottom: 1px solid #ddd; text-align: right; position: relative; }
+        .items-table td:first-child { text-align: left; width: 50%; }
+
+        .row-controls { margin-top: 10px; text-align: left; }
+        .btn-add {
+            background-color: #f0f0f0; border: 1px dashed #bbb; color: #777;
+            padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 13px;
+        }
+        
+        .btn-del {
+            background: #eee; border: none; color: #999; cursor: pointer; 
+            font-size: 12px; border-radius: 50%; width: 20px; height: 20px;
+            display: flex; align-items: center; justify-content: center;
+            position: absolute; right: 5px; top: 10px; display: none;
+        }
+        tr:hover .btn-del { display: flex; }
+
+        .summary-area { display: flex; justify-content: flex-end; margin-top: 20px; }
+        .summary-table { width: 260px; border-collapse: collapse; font-size: 14px; }
+        .summary-table td { padding: 10px; border-bottom: 1px solid #eee; text-align: right; }
+        .summary-table .label { font-weight: bold; text-align: left; }
+
+        .bank-box { margin-top: 40px; padding: 15px; background: #fafafa; border-radius: 8px; border: 1px solid #eee; font-size: 13px; }
+        .bank-title { font-weight: bold; border-left: 4px solid var(--primary-color); padding-left: 10px; margin-bottom: 8px; }
+
+        .editable { outline: none; transition: 0.1s; border-bottom: 1px solid transparent; }
+        .editable:hover { background: #fffde7; border-bottom-color: var(--primary-color); }
+
+        .instructions {
+            width: 210mm; background: #fff; padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            font-size: 13px; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        #toast {
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: #333; color: white; padding: 12px 24px; border-radius: 30px;
+            font-size: 14px; z-index: 1000; display: none; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .toolbar, .instructions, .btn-add, .btn-del { display: none !important; }
+            .page { box-shadow: none; border: none; margin: 0; width: 100%; height: auto; }
+            .items-table th { background-color: #333 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="toast">保存しました</div>
+
+    <div class="toolbar">
+        <div><strong>えぇ塩梅屋 請求書ツール</strong></div>
+        <div class="btn-group">
+            <button class="btn-action btn-record" onclick="recordToSales()">売上に反映（記録・更新）</button>
+            <button class="btn-action btn-print" onclick="window.print()">印刷・PDF保存</button>
+            <button class="btn-action btn-pdf" onclick="downloadPDF()">PDFダウンロード</button>
+        </div>
+    </div>
+
+    <div class="page" id="invoice-page">
+        <div class="header">
+            <div>
+                <h1 class="title">請求書</h1>
+                <div style="margin-top: 10px;">
+                    <div class="recipient-name editable" contenteditable="true" id="recip">（宛先を記入）</div> <span>御中</span>
+                    <p style="font-size: 12px; color: #666; margin-top: 5px;">下記の通りご請求申し上げます。</p>
+                </div>
+            </div>
+            <div class="issuer-info">
+                <div>発行日： <span class="editable" contenteditable="true" id="v-date">2026年 3月 28日</span></div>
+                <div>請求番号： <span class="editable" contenteditable="true" id="v-num">INV-20260328-01</span></div>
+                <div style="margin-top: 20px;">
+                    <div class="issuer-name">えぇ塩梅屋</div>
+                    〒 <span class="editable" contenteditable="true" id="v-zip">000-0000</span><br>
+                    <span class="editable" contenteditable="true" id="v-addr">（住所をご記入下さい）</span><br>
+                    TEL: <span class="editable" contenteditable="true" id="v-tel">090-0000-0000</span><br>
+                    登録番号: <span class="editable" contenteditable="true" id="v-reg">T1234567890123</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="total-box">
+            <div style="font-weight:bold;">ご請求合計金額 (税込)</div>
+            <div class="total-amount">￥ <span id="total-val">0</span> —</div>
+        </div>
+
+        <table class="items-table">
+            <thead>
+                <tr><th>内容</th><th>数量</th><th>単価</th><th>金額</th></tr>
+            </thead>
+            <tbody id="items-body">
+                <!-- Data here -->
+            </tbody>
+        </table>
+
+        <div class="row-controls" data-html2canvas-ignore="true">
+            <button class="btn-add" onclick="addRow()">＋ 行を追加する</button>
+        </div>
+
+        <div class="summary-area">
+            <table class="summary-table">
+                <tr><td class="label">小計</td><td>￥<span id="sub">0</span></td></tr>
+                <tr><td class="label">消費税(10%)</td><td>￥<span id="tx10">0</span></td></tr>
+                <tr style="font-size: 18px; font-weight: bold; background: #f9f9f9;"><td class="label">合計</td><td>￥<span id="fin">0</span></td></tr>
+            </table>
+        </div>
+
+        <div class="bank-box">
+            <div class="bank-title">■ お振込先</div>
+            <div class="editable" contenteditable="true" id="v-bank">
+                ○○銀行　△△支店<br>
+                普通番号：1234567<br>
+                名義：エエアンバイヤ
+            </div>
+            <div style="margin-top: 15px;">
+                <strong>お支払い期限：</strong> <span class="editable" contenteditable="true" id="v-lim">2026年 4月末日</span>
+            </div>
+        </div>
+
+        <div class="footer-logo" style="text-align: center; margin-top:50px; opacity:0.1; font-family:'Klee One';">えぇ塩梅屋</div>
+    </div>
+
+    <script>
+        // 管理番号の正規化用（接頭辞の違いや全角半角を吸収）
+        function normalizeId(id) {
+            if(!id) return '';
+            let s = id.replace(/[０-９ａ-ｚＡ-Ｚ]/g, function(s) {
+                return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+            }).replace(/[\s\u3000]/g, '').toLowerCase();
+            // inv- や no. などの接頭辞を削除して、純粋な番号部分で比較しやすくする
+            return s.replace(/^inv-?/, '').replace(/^no\.?/, '');
+        }
+
+        function recordToSales() {
+            const date = document.getElementById('v-date').innerText;
+            const recip = document.getElementById('recip').innerText;
+            const amount = parseInt(document.getElementById('fin').innerText.replace(/,/g, '')) || 0;
+            const rawNum = document.getElementById('v-num').innerText;
+            const num = normalizeId(rawNum);
+
+            if (!num || num === '') {
+                alert('請求番号を入力してください。番号が重複登録を防ぐ管理キーになります。');
+                return;
+            }
+
+            const history = JSON.parse(localStorage.getItem('eianbai_sales_history_v2') || '[]');
+            const existingIdx = history.findIndex(it => normalizeId(it.num) === num);
+
+            const items = Array.from(document.querySelectorAll('#items-body tr')).map(tr => ({
+                c: tr.children[0].innerText.trim(),
+                q: tr.children[1].innerText.trim(),
+                p: tr.children[2].innerText.trim(),
+                a: tr.children[3].childNodes[0].textContent.trim()
+            })).filter(it => it.c);
+
+            const entry = {
+                num: rawNum.trim(),
+                date: date,
+                recipient: recip,
+                amount: amount,
+                subtotal: document.getElementById('sub').innerText,
+                tax: document.getElementById('tx10').innerText,
+                items: items, 
+                issuer_zip: document.getElementById('v-zip').innerText,
+                issuer_addr: document.getElementById('v-addr').innerText,
+                issuer_tel: document.getElementById('v-tel').innerText,
+                issuer_reg: document.getElementById('v-reg').innerText,
+                bank: document.getElementById('v-bank').innerText,
+                limit: document.getElementById('v-lim').innerText,
+                status_invoice: true,
+                status_receipt: existingIdx >= 0 ? history[existingIdx].status_receipt || false : false,
+                last_updated: Date.now()
+            };
+
+            if (existingIdx >= 0) {
+                // 上書き
+                history[existingIdx] = entry;
+                showToast('売上情報を更新しました（二重登録を防ぎました）');
+            } else {
+                // 新規追加
+                history.push(entry);
+                showToast('売上に新しく記録しました');
+            }
+
+            localStorage.setItem('eianbai_sales_history_v2', JSON.stringify(history));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 2500);
+        }
+
+        function downloadPDF() {
+            const element = document.getElementById('invoice-page');
+            const recip = document.getElementById('recip').innerText;
+            const date = document.getElementById('v-date').innerText.replace(/\s/g, '');
+            const filename = `請求書_${recip}様_${date}.pdf`;
+            
+            const opt = {
+                margin: 0,
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: 'avoid' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function save() {
+            const data = { meta: {}, items: [] };
+            document.querySelectorAll('.editable[id]').forEach(el => data.meta[el.id] = el.innerText);
+            document.querySelectorAll('#items-body tr').forEach(tr => {
+                data.items.push({ c: tr.children[0].innerText, q: tr.children[1].innerText, p: tr.children[2].innerText });
+            });
+            localStorage.setItem('eianbai_invoice_v6', JSON.stringify(data));
+        }
+
+        function addRow(c = '', q = '', p = '') {
+            const tbody = document.getElementById('items-body');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="editable" contenteditable="true">${c}</td>
+                <td class="editable" contenteditable="true">${q}</td>
+                <td class="editable" contenteditable="true">${p}</td>
+                <td class="res">0<button class="btn-del" data-html2canvas-ignore="true" onclick="this.parentElement.parentElement.remove(); calc(); save();">×</button></td>
+            `;
+            tbody.appendChild(tr);
+            tr.addEventListener('input', () => { calc(); save(); });
+            calc();
+        }
+
+        function calc() {
+            let sub = 0;
+            const rows = document.getElementById('items-body').children;
+            for(let r of rows) {
+                const q = parseFloat(r.children[1].innerText.replace(/,/g,'')) || 0;
+                const p = parseFloat(r.children[2].innerText.replace(/,/g,'')) || 0;
+                const a = q * p;
+                r.children[3].childNodes[0].textContent = a.toLocaleString();
+                sub += a;
+            }
+            const t10 = Math.floor(sub * 0.1);
+            const total = sub + t10;
+            document.getElementById('sub').innerText = sub.toLocaleString();
+            document.getElementById('tx10').innerText = t10.toLocaleString();
+            document.getElementById('total-val').innerText = total.toLocaleString();
+            document.getElementById('fin').innerText = total.toLocaleString();
+        }
+
+        function load() {
+            const json = localStorage.getItem('eianbai_invoice_v6');
+            if (json) {
+                const data = JSON.parse(json);
+                Object.keys(data.meta).forEach(id => { const el = document.getElementById(id); if (el) el.innerText = data.meta[id]; });
+                const tbody = document.getElementById('items-body');
+                tbody.innerHTML = '';
+                data.items.forEach(it => addRow(it.c, it.q, it.p));
+            } else {
+                addRow('業務委託費', '1', '10000');
+            }
+            calc();
+        }
+
+        function checkParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const num = normalizeId(urlParams.get('num'));
+            if (!num) return;
+
+            const history = JSON.parse(localStorage.getItem('eianbai_sales_history_v2') || '[]');
+            const it = history.find(entry => normalizeId(entry.num) === num);
+
+            if (it) {
+                // データを反映
+                document.getElementById('v-num').innerText = it.num;
+                document.getElementById('v-date').innerText = it.date;
+                document.getElementById('recip').innerText = it.recipient;
+                document.getElementById('v-zip').innerText = it.issuer_zip || '';
+                document.getElementById('v-addr').innerText = it.issuer_addr || '';
+                document.getElementById('v-tel').innerText = it.issuer_tel || '';
+                document.getElementById('v-reg').innerText = it.issuer_reg || '';
+                document.getElementById('v-bank').innerText = it.bank || '';
+                document.getElementById('v-lim').innerText = it.limit || '';
+
+                // 明細の復元
+                const tbody = document.getElementById('items-body');
+                tbody.innerHTML = '';
+                if (it.items && it.items.length > 0) {
+                    it.items.forEach(row => {
+                        if (typeof row === 'object') {
+                            addRow(row.c, row.q, row.p);
+                        } else {
+                            addRow(row, '1', '0'); // 旧形式互換
+                        }
+                    });
+                } else {
+                    addRow();
+                }
+                calc();
+                showToast('過去のデータを読み込みました');
+            }
+        }
+
+        window.onload = () => {
+            load();
+            checkParams();
+        };
+        document.addEventListener('input', (e) => { if (e.target.id && e.target.classList.contains('editable')) save(); });
+    </script>
+</body>
+</html>

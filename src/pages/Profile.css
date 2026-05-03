@@ -205,7 +205,25 @@
 .premium-bg-shinyama .history-timeline.grid-layout .history-date { color: var(--color-magenta); border-bottom-color: var(--color-magenta); }
 
 /* --- VOLUNTEER SECTION --- */
-.volunteer-section { padding: 150px 0; background-color: #fff; }
+.volunteer-section { 
+  padding: 150px 0; 
+  background-image: url('/images/二人の背景画像.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* スクロールに合わせて背景が少し遅れて動くパララックス効果 */
+  position: relative;
+}
+.volunteer-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* 画像が強すぎて文字が読めなくなるのを防ぐ薄い白ベール */
+  z-index: 1;
+}
+.volunteer-section .container {
+  position: relative;
+  z-index: 2;
+}
 .volunteer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; margin-top: 60px; }
 .vol-card {
   background-color: #fff; border: 1px solid #eee; padding: 50px; border-radius: 20px;

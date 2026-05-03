@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="游ゴシック" x:CharSet="128" x:Family="Modern" ss:Size="11"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="Title">
+   <Font ss:FontName="Klee One" ss:Size="20" ss:Bold="1"/>
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="領収書">
+  <Table ss:ExpandedColumnCount="5" ss:ExpandedRowCount="10" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="54" ss:DefaultRowHeight="13.5">
+   <Column ss:Width="100"/>
+   <Column ss:Width="150"/>
+   <Row ss:Height="30">
+    <Cell ss:MergeAcross="4" ss:StyleID="Title"><Data ss:Type="String">領 収 書</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">様</Data></Cell>
+   </Row>
+  </Table>
+ </Worksheet>
+</Workbook>

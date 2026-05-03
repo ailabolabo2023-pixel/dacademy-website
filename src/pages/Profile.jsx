@@ -91,6 +91,22 @@ export default function Profile() {
                     </div>
                   </div>
                 </div>
+
+                {/* --- 余白部分を埋める追加画像 --- */}
+                <div style={{ marginTop: '50px', textAlign: 'center' }}>
+                  <img 
+                    src="/images/太田さんプロフィール余白部分画像.png" 
+                    alt="太田めぐみ 活躍イメージ" 
+                    style={{ 
+                      width: '100%', 
+                      borderRadius: '20px', 
+                      boxShadow: '0 15px 35px rgba(0,0,0,0.08)',
+                      transition: 'transform 0.3s ease'
+                    }} 
+                    onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+                    onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  />
+                </div>
               </div>
 
               <div className="data-group span-full">
@@ -184,6 +200,22 @@ export default function Profile() {
                   <li>O2 study club 所属</li>
                   <li>Dacademy 主催</li>
                 </ul>
+
+                {/* --- 余白部分を埋める追加画像 --- */}
+                <div style={{ marginTop: '50px', textAlign: 'center' }}>
+                  <img 
+                    src="/images/晋山さん余白部分画像.png" 
+                    alt="晋山直子 活躍イメージ" 
+                    style={{ 
+                      width: '100%', 
+                      borderRadius: '20px', 
+                      boxShadow: '0 15px 35px rgba(0,0,0,0.08)',
+                      transition: 'transform 0.3s ease'
+                    }} 
+                    onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+                    onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  />
+                </div>
               </div>
 
               <div className="data-group span-full">

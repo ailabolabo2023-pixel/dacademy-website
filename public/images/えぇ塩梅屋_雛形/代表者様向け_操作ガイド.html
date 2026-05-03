@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作ガイド | えぇ塩梅屋 雛形セット</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Zen Kaku Gothic New', sans-serif; line-height: 1.8; color: #333; max-width: 900px; margin: 0 auto; padding: 40px 20px; background: #fdfdfd; }
+        h1 { color: #2D5A27; border-bottom: 2px solid #2D5A27; padding-bottom: 10px; text-align: center; margin-bottom: 40px; }
+        h2 { color: #D4AF37; margin-top: 50px; border-left: 8px solid #D4AF37; padding-left: 15px; font-size: 1.4em; }
+        .card { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 25px 0; border: 1px solid #eee; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-weight: bold; color: #d32f2f; }
+        .step { font-weight: bold; color: #2D5A27; font-size: 1.1em; display: block; margin-bottom: 5px; }
+        .important { color: #d32f2f; font-weight: bold; background: #fff5f5; padding: 15px; border-radius: 8px; border: 1px solid #ffcdd2; margin: 20px 0; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; vertical-align: middle; margin-left: 5px; }
+        .bg-invoice { background: #e3f2fd; color: #1976d2; }
+        .bg-receipt { background: #e8f5e9; color: #2e7d32; }
+        
+        .tip-box { background: #e0f2f1; padding: 20px; border-radius: 12px; border-left: 5px solid #00897b; margin: 20px 0; font-size: 0.95em; }
+        
+        li { margin-bottom: 15px; }
+        strong { color: #2D5A27; }
+    </style>
+</head>
+<body>
+    <h1>えぇ塩梅屋 帳票システム 操作ガイド</h1>
+    <p style="text-align: center; color: #666;">このシステムは、請求書・領収書・売上管理をシームレスに繋ぐ専用設計です。<br>すべてのデータはあなたのPC内（ブラウザ）に安全に保存されます。</p>
+
+    <h2>1. 請求書を作る</h2>
+    <div class="card">
+        <ul>
+            <li><span class="step">① 内容の入力</span>
+                青枠や文字部分をクリックして直接書き換えます。単価や個数を入力すると、小計・消費税・合計額が<strong>すべて自動計算</strong>されます。
+            </li>
+            <li><span class="step">② 行の調整</span>
+                「＋ 行を追加」で項目を増やせます。不要な行は右端の「×」で削除できます。
+            </li>
+            <li><span class="step">③ 売上に反映（重要）</span>
+                内容が確定したら、緑色の<strong>「売上に反映」</strong>ボタンを必ず押してください。これにより、内容（明細や住所などすべて）がデータベースに記録され、管理表や領収書で利用できるようになります。
+            </li>
+        </ul>
+    </div>
+
+    <h2>2. 領収書を「爆速」で作る</h2>
+    <div class="card">
+        <p>請求書を作成済みであれば、領収書の入力はほぼ不要です。</p>
+        <ul>
+            <li><span class="step">① 番号で読み込み</span>
+                領収書の上部にある「管理番号(請求番号)」の欄に、請求書と同じ番号（例：0000003）を入力し、<strong>「請求データ読込」</strong>を押します。
+            </li>
+            <li><span class="step">② すべてを同期</span>
+                宛名、金額、明細の内容、さらには「自分の住所や電話番号」まで、請求書の内容がそのままコピーされます。
+            </li>
+            <li><span class="step">③ PDFダウンロード</span>
+                赤いボタンでPDFを保存します。作業用の「読込ボタン」などはPDFには一切映りませんのでご安心ください。
+            </li>
+        </ul>
+    </div>
+
+    <h2>3. 売上管理表を活用する</h2>
+    <div class="card">
+        <p><code>売上管理表.html</code> を開くと、これまでの全実績が月別に集計されています。</p>
+        <ul>
+            <li><span class="step">過去の書類を瞬時に確認</span>
+                一覧表の各行にある<strong>「📄 請求書」</strong>または<strong>「🧾 領収書」</strong>ボタンを押すと、新しいタブで「当時の内容がすべて最初から入力された状態」の雛形が開きます。
+            </li>
+            <li><span class="step">データの「清書」と「再利用」</span>
+                過去のデータを呼び出して、一部だけ書き換えて別名で保存するなどの操作も簡単に行えます。
+            </li>
+            <li><span class="step">提出用データの書き出し</span>
+                「CSVで出力」ボタンで、Excelで開ける形式のファイルとして全データを書き出せます（確定申告などに便利です）。
+            </li>
+        </ul>
+    </div>
+
+    <div class="important">
+        <strong>⚠️ 過去のデータが反映されない場合</strong><br>
+        今回のアップデート以前に保存したデータは、「宛名と金額」しか記録されていません。それらの詳細を確認したい場合は、一度その番号で「請求書」を開き、内容を整えてから再度<strong>「売上に反映」</strong>ボタンを押し直してください。
+    </div>
+
+    <div class="tip-box">
+        <strong>💡 キレイに出力するコツ</strong><br>
+        PDFを保存（または印刷）する際、ページ設定で<strong>「背景のグラフィック」</strong>をオンにしてください。和モダンな背景デザインや松の模様が綺麗に反映されます。
+    </div>
+
+    <h2>4. 会計ソフト（freeeなど）との連携</h2>
+    <div class="card">
+        <p>「freee」などの本格的な会計ソフトへ入力するまでの<strong>「一時的な保管・記録用」</strong>として活用することで、日々の事務負担を大幅に軽減できます。</p>
+        <ul>
+            <li><span class="step">日々の業務</span>: 外出先や現場で、このツールを使って請求書・領収書をサッと発行し、その場で<strong>「売上に反映」</strong>して完了！</li>
+            <li><span class="step">月に一度のまとめ作業</span>: 売上管理表の「CSVで出力」ボタンを押し、書き出したデータを見ながら、会計ソフトへまとめて売上を入力します。</li>
+            <li><span class="step">確実な証拠保管</span>: 会計ソフトに入力した後も、作成したPDFデータが「証拠書類」として手元に残るため、税務調査対策も万全です。</li>
+        </ul>
+        <div class="tip-box">
+            <strong>💡 おすすめの運用方法</strong><br>
+            「すぐに会計ソフトを開くのは面倒だけど、記録は忘れたくない…」という時の一時的な保管場所として最適です。まずはこのツールで記録しておけば、後回しにしても安心です。
+        </div>
+    </div>
+
+    <h2>5. バックアップと配布</h2>
+    <div class="card">
+        <p>このシステムは、フォルダごと持ち運べます。PCを買い替える際やバックアップを取りたい場合は、フォルダ丸ごとコピーするか、ZIP圧縮して送付してください。</p>
+        <p>※推奨ブラウザ：Google Chrome / Microsoft Edge</p>
+    </div>
+
+    <footer style="margin-top: 80px; text-align: center; color: #999; font-size: 0.85em;">
+        &copy; 2026 えぇ塩梅屋 業務支援パッケージ<br>
+        本システムは最新のWeb技術（HTML5, JS）により構築されています。
+    </footer>
+</body>
+</html>

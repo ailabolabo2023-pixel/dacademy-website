@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import ScrollToTop from './components/ScrollToTop'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import AudioPlayer from './components/AudioPlayer'
@@ -12,6 +13,7 @@ import Contact from './pages/Contact'
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app-container">
         <Header />
         <main className="main-content">
