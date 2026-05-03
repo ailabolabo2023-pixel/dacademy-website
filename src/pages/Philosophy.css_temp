@@ -1,0 +1,117 @@
+/* --- SECTION 2 & 全体共通: 上品な見出し --- */
+.concept-about-html {
+  padding: 120px 0;
+  background-image: url('/images/Dacademyとはの背景画像.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* アメコミ風巨大背景テキスト（カラフル・グラデーション） */
+.concept-about-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  font-family: 'Bangers', 'Arial Black', sans-serif;
+  font-size: 15vw;
+  font-weight: 900;
+  line-height: 0.85;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 188, 212, 0.2),
+    rgba(255, 0, 150, 0.2),
+    rgba(255, 180, 0, 0.2),
+    rgba(150, 0, 255, 0.2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(0, 188, 212, 0.15);
+  white-space: pre-wrap;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.concept-about-html::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.8) 100%
+  );
+  z-index: 2;
+}
+
+.concept-floating-decor {
+  position: absolute;
+  color: #bce1e8;
+  font-size: 1.5rem;
+  z-index: 3;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: float-anim 6s ease-in-out infinite;
+}
+.decor-1 { top: 15%; left: 10%; animation-delay: 0s; font-size: 2rem; }
+.decor-2 { bottom: 20%; right: 12%; animation-delay: -2s; font-size: 1.8rem; }
+.decor-3 { top: 40%; right: 8%; animation-delay: -4s; color: #ff0096; opacity: 0.3; }
+
+@keyframes float-anim {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.concept-about-content {
+  position: relative;
+  z-index: 3;
+}
+
+.section-elegant-title {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #112233;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  letter-spacing: 0.15em;
+}
+
+/* --- SECTION 3: 大切にしていること --- */
+.values-box-title {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #112233;
+  margin-bottom: 50px; /* PCでの余白 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .values-box-title {
+    font-size: 1.3rem;
+    margin-bottom: 80px !important; /* スマホでは大幅に余白を確保 */
+    display: block !important; /* flexを解除して自然な改行に */
+    line-height: 1.6;
+  }
+  .values-box-title span {
+    display: inline; /* spanの強制的な横並びを解除 */
+  }
+}

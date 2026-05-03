@@ -57,6 +57,7 @@ export default function Philosophy() {
 
       {/* 2. Dacademyとは */}
       <section className="concept-about-html">
+        <div className="concept-about-bg-text">What is<br />Dacademy?</div>
         <div className="concept-floating-decor decor-1">✦</div>
         <div className="concept-floating-decor decor-2">✦</div>
         <div className="concept-floating-decor decor-3">＋</div>
@@ -85,10 +86,9 @@ export default function Philosophy() {
           <div className="values-box animate-on-scroll fade-up">
             <h2 className="values-box-title">
               <span className="sparkle">✦</span>
-              <span><span className="text-cyan">D</span>academy が大切にしていること</span>
+              <span><span className="text-cyan">D</span>academyが大切にしていること</span>
               <span className="sparkle">✦</span>
             </h2>
-            
             <div className="values-grid">
               <div className="value-item animate-on-scroll fade-up delay-1">
                 <div className="value-icon-wrapper">

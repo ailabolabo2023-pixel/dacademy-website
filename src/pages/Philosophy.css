@@ -169,8 +169,40 @@
   background-attachment: fixed; /* パララックス（視差効果） */
   text-align: center;
   position: relative;
-  overflow: hidden; /* 装飾がはみ出さないように */
+  overflow: hidden !important; /* 絶対にはみ出しを許さない */
 }
+
+/* アメコミ風巨大背景テキスト（カラフル・グラデーション） */
+.concept-about-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-5deg);
+  font-family: 'Bangers', 'Arial Black', sans-serif;
+  font-size: 15vw;
+  font-weight: 900;
+  line-height: 0.85;
+  /* 複数色を使ったグラデーション */
+  background: linear-gradient(
+    45deg,
+    rgba(0, 188, 212, 0.2),   /* シアン */
+    rgba(255, 0, 150, 0.2),   /* マゼンタ */
+    rgba(255, 180, 0, 0.2),   /* イエロー・オレンジ */
+    rgba(150, 0, 255, 0.2)    /* パープル */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* 背景グラデーションを文字色にする */
+  
+  -webkit-text-stroke: 1.5px rgba(0, 188, 212, 0.15); /* 縁取りは少し細くして繊細に */
+  white-space: pre-wrap;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
 /* 背景の上下を柔らかく馴染ませるグラデーション */
 .concept-about-html::before {
   content: "";
@@ -185,7 +217,7 @@
     rgba(255, 255, 255, 0.4) 50%,
     rgba(255, 255, 255, 0.8) 100%
   );
-  z-index: 1;
+  z-index: 2;
 }
 
 /* 浮遊する装飾パーツ */
@@ -193,7 +225,7 @@
   position: absolute;
   color: #bce1e8;
   font-size: 1.5rem;
-  z-index: 2;
+  z-index: 3;
   opacity: 0.6;
   pointer-events: none;
   animation: float-anim 6s ease-in-out infinite;
@@ -222,6 +254,45 @@
   justify-content: center;
   gap: 20px;
   letter-spacing: 0.15em; /* 文字間を空けてエレガントに */
+}
+
+/* --- SECTION 3: 大切にしていること --- */
+.concept-values-html {
+  padding: 60px 0;
+  background-color: #ffffff;
+  overflow: hidden; /* 横スクロール防止 */
+}
+.values-box {
+  border: 1px solid #bce1e8;
+  border-radius: 20px;
+  padding: 60px 40px 40px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.values-box-title {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #112233;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+
+/* スマホ用改行制御 */
+.sp-only { display: none; }
+
+@media (max-width: 768px) {
+  .sp-only { display: block; }
+  .values-box-title {
+    font-size: 1.4rem;
+    margin-bottom: 80px;
+    gap: 10px;
+  }
 }
 .text-cyan {
   color: #008fa3;
@@ -292,9 +363,9 @@
   background-color: #bce1e8;
 }
 .value-icon-wrapper {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 15px;
+  width: 110px !important; /* すべての箇所で強制的に110pxにする */
+  height: 110px !important;
+  margin: 0 auto 25px;
   border: 1px solid #00bcd4;
   border-radius: 50%;
   display: flex;
@@ -303,7 +374,7 @@
   background-color: #fff;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 188, 212, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 188, 212, 0.12);
 }
 
 .value-item:hover .value-icon-wrapper {
@@ -314,7 +385,7 @@
 .value-icon-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* アイコン画像が枠いっぱいに綺麗に収まるように */
+  object-fit: cover;
 }
 
 .no-border {
@@ -324,7 +395,15 @@
 }
 
 .no-border .value-icon-img {
-  object-fit: contain; /* 学びの流れなどは形を保つ */
+  object-fit: contain;
+}
+
+/* スマホ表示でのサイズ調整（110pxだと大きすぎる場合があるため） */
+@media (max-width: 768px) {
+  .value-icon-wrapper {
+    width: 90px !important;
+    height: 90px !important;
+  }
 }
 .value-svg-icon {
   width: 35px; /* 50pxから縮小 */
@@ -440,21 +519,21 @@
   padding: 0 10px;
 }
 .flow-badge {
+  position: absolute;
+  top: -5px; /* 元の数字を隠す位置に調整 */
+  left: -5px;
+  width: 34px; /* 元画像の青い丸より少しだけ大きくして完全に隠す */
+  height: 34px;
   background-color: #00bcd4;
-  color: #ffffff;
-  width: 26px;
-  height: 26px;
+  color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 500; /* 700から500に下げてスッキリと */
-  font-size: 0.9rem;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-180%, -20%); /* アイコンの左上に配置 */
-  z-index: 2;
+  font-weight: 800;
+  font-size: 1.1rem;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3);
 }
 .value-icon-wrapper.no-border {
   border: none; /* 枠線なし */
