@@ -260,7 +260,27 @@
 .concept-values-html {
   padding: 60px 0;
   background-color: #ffffff;
-  overflow: hidden; /* 横スクロール防止 */
+  background-image: url('/images/セクション３背景画像.png');
+  background-size: cover;       /* セクションに合わせてカバー */
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;             /* 横スクロール防止 */
+  position: relative;
+}
+
+/* テキスト視認性確保のためのオーバーレイ */
+.concept-values-html::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35); /* 画像をより濃く見せる */
+  z-index: 0;
+}
+
+/* コンテンツを前面に出す */
+.concept-values-html .container {
+  position: relative;
+  z-index: 1;
 }
 .values-box {
   border: 1px solid #bce1e8;
@@ -281,17 +301,28 @@
   gap: 20px;
   letter-spacing: 0.15em;
   text-align: center;
+  flex-wrap: wrap; /* 文字が折り返すようにする */
+  white-space: normal;
 }
 
 /* スマホ用改行制御 */
 .sp-only { display: none; }
 
 @media (max-width: 768px) {
-  .sp-only { display: block; }
+  .sp-only { display: block; } /* スマホでのみ改行を有効化 */
+  .values-box {
+    padding: 40px 20px 30px;
+  }
   .values-box-title {
-    font-size: 1.4rem;
-    margin-bottom: 80px;
-    gap: 10px;
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+  .values-box-title .sparkle {
+    display: none; /* スマホでは✦を非表示 */
   }
 }
 .text-cyan {
@@ -311,36 +342,8 @@
   letter-spacing: 0.08em; /* 本文の文字間も少し広げてプロっぽく */
 }
 
-/* --- SECTION 3: 大切にしていること (HTML構成・画像再現レイアウト) --- */
-.concept-values-html {
-  padding: 60px 0; /* セクション2と同じパディングにしてスリムに */
-  background-color: #ffffff;
-}
-.values-box {
-  border: 1px solid #bce1e8; /* 2pxから1pxへ。極細ラインで繊細さを演出 */
-  border-radius: 20px;
-  padding: 50px 20px 30px;
-  position: relative;
-  margin-top: 30px;
-  box-shadow: 0 15px 40px rgba(0, 188, 212, 0.04); /* かすかな影をつけて浮遊感を出す */
-}
-.values-box-title {
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  padding: 0 30px;
-  font-family: 'Noto Serif JP', 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', serif; /* 明朝体 */
-  font-size: 1.6rem; /* 少しだけ小さく */
-  font-weight: 500;
-  color: #112233;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  white-space: nowrap;
-  letter-spacing: 0.1em;
-}
+
+
 .values-grid {
   display: flex;
   justify-content: space-between;
@@ -431,9 +434,48 @@
 /* --- SECTION 4: 目指す未来 --- */
 .concept-future-html {
   padding: 60px 0;
-  background-color: #f8fbfd; /* わずかな区切り色 */
+  background-color: #f8fbfd;
   text-align: center;
+  position: relative;   /* 背景テキストの基準点 */
+  overflow: hidden;     /* はみ出し防止 */
 }
+
+/* セクション2と統一感のある巨大背景テキスト（左肩上がり） */
+.concept-future-bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(5deg); /* 左肩上がり */
+  font-family: 'Bangers', 'Arial Black', sans-serif;
+  font-size: 10vw; /* 2行が収まるサイズに調整 */
+  font-weight: 900;
+  line-height: 1.1;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 188, 212, 0.13),
+    rgba(255, 0, 150, 0.13),
+    rgba(255, 180, 0, 0.13),
+    rgba(150, 0, 255, 0.13)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0, 188, 212, 0.1);
+  white-space: pre-wrap;
+  text-align: center;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  width: 90%; /* 画面幅に対して余白を持たせる */
+}
+
+/* コンテンツを前面に */
+.concept-future-html .container {
+  position: relative;
+  z-index: 1;
+}
+
 .future-grid {
   display: flex;
   align-items: center;
@@ -488,6 +530,10 @@
 .concept-target-html {
   padding: 60px 0;
   background-color: #ffffff;
+  background-image: url('/images/こんな方へ背景画像.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .four-cols .value-item {
   padding: 0 15px; /* 4カラムなので余白を狭く */
@@ -501,11 +547,133 @@
   height: 80px;
 }
 
-/* --- SECTION 6: 学びの流れ --- */
+/* --- SECTION 6: 学びの流れ（最終セクション） --- */
 .concept-flow-html {
-  padding: 60px 0 100px;
-  background-color: #f8fbfd;
+  padding: 80px 0 120px;
 }
+
+/* ページのトーンに合わせた淡いグラデーション背景 */
+.dark-flow-section {
+  background: linear-gradient(160deg, #f0f9fc 0%, #e8f6fa 40%, #f8fbfd 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景の装飾光源（シアンの柔らかい光） */
+.dark-flow-section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 188, 212, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* 内側のボックス（枠なし・背景透明） */
+.flow-inner-box {
+  position: relative;
+  z-index: 1;
+}
+
+/* タイトル構造 */
+.flow-section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 60px;
+  gap: 8px;
+}
+.flow-title-en {
+  font-family: 'Bangers', 'Arial Black', sans-serif;
+  font-size: 5rem;
+  letter-spacing: 0.15em;
+  background: linear-gradient(90deg, #00bcd4, #ff0096, #00bcd4);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine-text 4s linear infinite;
+}
+.flow-title-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.1rem;
+  color: #556677; /* サイトの本文色に合わせる */
+  letter-spacing: 0.3em;
+}
+
+@keyframes shine-text {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* フローのテキスト色 */
+.flow-item-title { color: #008fa3 !important; }
+.flow-item-text { color: #556677 !important; }
+
+/* パルスアニメーション付きバッジ */
+.pulse-badge {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 188, 212, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 188, 212, 0); }
+}
+
+/* 光るアニメーション矢印 */
+.flow-arrow-animated {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #00bcd4, transparent);
+  margin-top: 35px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: visible;
+}
+.flow-arrow-animated::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  animation: arrow-shine 2s ease-in-out infinite;
+}
+.flow-arrow-animated::after {
+  content: '';
+  position: absolute;
+  right: -6px; top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid #00bcd4;
+}
+@keyframes arrow-shine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* CTAメッセージ */
+.flow-cta {
+  margin-top: 70px;
+  text-align: center;
+}
+.flow-cta-copy {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.4rem;
+  color: #112233; /* ネイビーに変更 */
+  letter-spacing: 0.15em;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.flow-cta-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  margin: 0 auto;
+}
+
+
 .flow-grid {
   display: flex;
   align-items: flex-start;
@@ -637,3 +805,182 @@
     transform: translate(-120%, -20%);
   }
 }
+
+/* ===== SECTION 7: CTAバナー ===== */
+.concept-cta-section {
+  position: relative;
+  background: linear-gradient(135deg, #e8f7f9 0%, #d4f0f5 40%, #c8edf4 100%);
+  padding: 70px 60px;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+}
+
+/* 波形上部装飾 */
+.cta-wave-top {
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* 波形下部装飾 */
+.cta-wave-bottom {
+  position: absolute;
+  bottom: -30px; left: -20px;
+  width: 300px; height: 200px;
+  background: radial-gradient(ellipse, rgba(0,188,212,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ドット装飾 */
+.cta-dots {
+  position: absolute;
+  top: 30px; left: 40px;
+  width: 80px; height: 30px;
+  background-image: radial-gradient(circle, rgba(0,150,170,0.3) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+/* サークル装飾 */
+.cta-circle {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 188, 212, 0.2);
+  pointer-events: none;
+}
+.cta-circle-1 {
+  width: 180px; height: 180px;
+  bottom: -60px; right: 35%;
+}
+.cta-circle-2 {
+  width: 100px; height: 100px;
+  top: 20px; right: 42%;
+  border-color: rgba(255, 100, 150, 0.15);
+}
+
+/* 内側レイアウト */
+.cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* 左：テキスト・ボタン */
+.cta-content {
+  flex: 1;
+  max-width: 520px;
+}
+.cta-dots-deco {
+  color: rgba(0,150,170,0.5);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+}
+.cta-headline {
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #0a3a4a;
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+.cta-subtext {
+  font-size: 0.95rem;
+  color: #446677;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  letter-spacing: 0.05em;
+}
+
+/* ボタン */
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 150, 170, 0.25);
+}
+.cta-btn-primary {
+  background-color: #3dbccc;
+  color: #ffffff;
+  border: none;
+}
+.cta-btn-outline {
+  background-color: transparent;
+  color: #3dbccc;
+  border: 2px solid #3dbccc;
+}
+.cta-btn-outline:hover {
+  background-color: rgba(61, 188, 204, 0.08);
+}
+.cta-btn span { font-size: 1.1rem; }
+
+/* 右：講師写真エリア */
+.cta-instructors {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  flex-shrink: 0;
+}
+.cta-instructor-img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .concept-cta-section {
+    padding: 50px 24px 0;
+  }
+  .cta-inner {
+    flex-direction: column;
+  }
+  .cta-content {
+    max-width: 100%;
+    padding-bottom: 30px;
+  }
+  .cta-headline {
+    font-size: 1.5rem;
+  }
+  .cta-instructors {
+    width: 100%;
+    height: 200px;
+  }
+  .cta-instructor-img {
+    height: 220px;
+  }
+  .cta-img-front { right: 50%; }
+  .cta-img-back { right: 5%; }
+}
+

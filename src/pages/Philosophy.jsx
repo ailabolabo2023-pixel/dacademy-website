@@ -86,7 +86,7 @@ export default function Philosophy() {
           <div className="values-box animate-on-scroll fade-up">
             <h2 className="values-box-title">
               <span className="sparkle">✦</span>
-              <span><span className="text-cyan">D</span>academyが大切にしていること</span>
+              <span><span className="text-cyan">D</span>academyが<br className="sp-only" />大切にしていること</span>
               <span className="sparkle">✦</span>
             </h2>
             <div className="values-grid">
@@ -132,6 +132,8 @@ export default function Philosophy() {
 
       {/* 4. 目指す未来 */}
       <section className="concept-future-html">
+        {/* 背景の巨大英字（セクション2と統一） */}
+        <div className="concept-future-bg-text">OUR VISION{'\n'}FOR THE FUTURE</div>
         <div className="container">
           <h2 className="section-elegant-title animate-on-scroll fade-up">
             <span className="sparkle">✦</span>
@@ -217,58 +219,101 @@ export default function Philosophy() {
         </div>
       </section>
 
-      {/* 6. 学びの流れ */}
-      <section className="concept-flow-html">
+      {/* 6. 学びの流れ（最終セクション） */}
+      <section className="concept-flow-html dark-flow-section">
         <div className="container">
-          <div className="values-box animate-on-scroll fade-up">
-            <h2 className="values-box-title">
-              <span className="sparkle">✦</span>
-              <span>学びの流れ</span>
-              <span className="sparkle">✦</span>
+          <div className="flow-inner-box animate-on-scroll fade-up">
+            <h2 className="flow-section-title">
+              <span className="flow-title-en">LEARNING FLOW</span>
+              <span className="flow-title-ja">✦ 学びの流れ ✦</span>
             </h2>
             <div className="flow-grid">
               <div className="flow-step animate-on-scroll fade-up delay-1">
-                <div className="flow-badge">1</div>
+                <div className="flow-badge pulse-badge">1</div>
                 <div className="value-icon-wrapper no-border">
                   <img src="/images/f1.png" alt="学びの流れ1" className="value-icon-img" />
                 </div>
-                <h3 className="value-item-title">学ぶ</h3>
-                <p className="value-item-text">基礎知識や理論を<br/>わかりやすくインプット。</p>
+                <h3 className="value-item-title flow-item-title">学ぶ</h3>
+                <p className="value-item-text flow-item-text">基礎知識や理論を<br/>わかりやすくインプット。</p>
               </div>
 
-              <div className="flow-arrow animate-on-scroll fade-up delay-2"></div>
+              <div className="flow-arrow flow-arrow-animated"></div>
 
               <div className="flow-step animate-on-scroll fade-up delay-2">
-                <div className="flow-badge">2</div>
+                <div className="flow-badge pulse-badge">2</div>
                 <div className="value-icon-wrapper no-border">
                   <img src="/images/f2.png" alt="学びの流れ2" className="value-icon-img" />
                 </div>
-                <h3 className="value-item-title">実践する</h3>
-                <p className="value-item-text">実技やワークを通して、<br/>臨床で使える力を身につける。</p>
+                <h3 className="value-item-title flow-item-title">実践する</h3>
+                <p className="value-item-text flow-item-text">実技やワークを通して、<br/>臨床で使える力を身につける。</p>
               </div>
 
-              <div className="flow-arrow animate-on-scroll fade-up delay-3"></div>
+              <div className="flow-arrow flow-arrow-animated"></div>
 
               <div className="flow-step animate-on-scroll fade-up delay-3">
-                <div className="flow-badge">3</div>
+                <div className="flow-badge pulse-badge">3</div>
                 <div className="value-icon-wrapper no-border">
                   <img src="/images/f3.png" alt="学びの流れ3" className="value-icon-img" />
                 </div>
-                <h3 className="value-item-title">振り返る</h3>
-                <p className="value-item-text">ケースや症例を振り返り、<br/>理解を深める。</p>
+                <h3 className="value-item-title flow-item-title">振り返る</h3>
+                <p className="value-item-text flow-item-text">ケースや症例を振り返り、<br/>理解を深める。</p>
               </div>
 
-              <div className="flow-arrow animate-on-scroll fade-up delay-4"></div>
+              <div className="flow-arrow flow-arrow-animated"></div>
 
               <div className="flow-step animate-on-scroll fade-up delay-4">
-                <div className="flow-badge">4</div>
+                <div className="flow-badge pulse-badge">4</div>
                 <div className="value-icon-wrapper no-border">
                   <img src="/images/f4.png" alt="学びの流れ4" className="value-icon-img" />
                 </div>
-                <h3 className="value-item-title">成長する</h3>
-                <p className="value-item-text">学びを積み重ね、<br/>自信と成果を積み重ねる。</p>
+                <h3 className="value-item-title flow-item-title">成長する</h3>
+                <p className="value-item-text flow-item-text">学びを積み重ね、<br/>自信と成果を積み重ねる。</p>
               </div>
             </div>
+
+            {/* 締めのCTAメッセージ */}
+            <div className="flow-cta animate-on-scroll fade-up">
+              <p className="flow-cta-copy">あなたの成長が、ここから始まります。</p>
+              <div className="flow-cta-line"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* 7. CTAバナー */}
+      <section className="concept-cta-section">
+        {/* 波形背景装飾 */}
+        <div className="cta-wave-top"></div>
+        <div className="cta-wave-bottom"></div>
+
+        {/* 装飾ドット・サークル */}
+        <div className="cta-dots"></div>
+        <div className="cta-circle cta-circle-1"></div>
+        <div className="cta-circle cta-circle-2"></div>
+
+        <div className="cta-inner">
+          {/* 左：テキスト＆ボタン */}
+          <div className="cta-content animate-on-scroll fade-up">
+            <div className="cta-dots-deco">· · · · · · · · · ·</div>
+            <h2 className="cta-headline">
+              一歩踏み出すことで、<br />
+              未来の自分が変わる
+            </h2>
+            <p className="cta-subtext">
+              Dacademyで、明日からの臨床に活かせる学びをはじめませんか。
+            </p>
+            <div className="cta-buttons">
+              <a href="/programs" className="cta-btn cta-btn-primary">
+                コース内容を見る <span>›</span>
+              </a>
+              <a href="/contact" className="cta-btn cta-btn-outline">
+                お問い合わせ <span>›</span>
+              </a>
+            </div>
+          </div>
+
+          {/* 右：講師写真 */}
+          <div className="cta-instructors animate-on-scroll fade-up">
+            <img src="/images/CTAセクション講師写真.png" alt="講師・太田めぐみと晋山直子" className="cta-instructor-img" />
           </div>
         </div>
       </section>

@@ -209,8 +209,8 @@
   padding: 150px 0; 
   background-image: url('/images/二人の背景画像.png');
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* スクロールに合わせて背景が少し遅れて動くパララックス効果 */
+  background-position: top; /* 画像の上部（顔）をセクション上端に合わせる */
+  background-attachment: fixed;
   position: relative;
 }
 .volunteer-section::before {
