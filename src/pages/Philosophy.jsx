@@ -224,7 +224,13 @@ export default function Philosophy() {
         <div className="container">
           <div className="flow-inner-box animate-on-scroll fade-up">
             <h2 className="flow-section-title">
-              <span className="flow-title-en">LEARNING FLOW</span>
+              <div className="flow-marquee-wrapper">
+                <div className="flow-marquee-content">
+                  <span className="flow-title-en">LEARNING FLOW</span>
+                  <span className="flow-title-en">LEARNING FLOW</span>
+                  <span className="flow-title-en">LEARNING FLOW</span>
+                </div>
+              </div>
               <span className="flow-title-ja">✦ 学びの流れ ✦</span>
             </h2>
             <div className="flow-grid">

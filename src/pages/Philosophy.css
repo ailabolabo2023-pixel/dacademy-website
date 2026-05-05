@@ -585,18 +585,44 @@
   align-items: center;
   margin-bottom: 60px;
   gap: 8px;
+  width: 100%;
+  overflow: hidden; /* はみ出しを隠す */
 }
+
+/* マーキーのコンテナ */
+.flow-marquee-wrapper {
+  width: 100vw; /* 画面いっぱいに広げる */
+  margin-left: calc(-50vw + 50%); /* コンテナを無視して画面端まで広げる */
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.flow-marquee-content {
+  display: flex;
+  white-space: nowrap;
+  animation: flow-marquee 15s linear infinite; /* 30sから15sに高速化 */
+  width: max-content;
+}
+
 .flow-title-en {
   font-family: 'Bangers', 'Arial Black', sans-serif;
-  font-size: 5rem;
-  letter-spacing: 0.15em;
+  font-size: 6rem; /* 少し大きくしてインパクトを出す */
+  letter-spacing: 0.1em;
   background: linear-gradient(90deg, #00bcd4, #ff0096, #00bcd4);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  padding: 0 40px; /* テキスト間の余白 */
   animation: shine-text 4s linear infinite;
+  display: inline-block;
 }
+
+@keyframes flow-marquee {
+  0% { transform: translateX(-33.3333%); } /* 左側からスタート */
+  100% { transform: translateX(0); }      /* 右方向へスライド */
+}
+
 .flow-title-ja {
   font-family: 'Noto Serif JP', serif;
   font-size: 1.1rem;
@@ -982,5 +1008,14 @@
   }
   .cta-img-front { right: 50%; }
   .cta-img-back { right: 5%; }
+
+  /* 学びの流れ（マーキー）スマホ調整 */
+  .flow-title-en {
+    font-size: 3.5rem; /* スマホではサイズを少し抑える */
+    padding: 0 20px;
+  }
+  .flow-marquee-wrapper {
+    padding: 5px 0;
+  }
 }
 
