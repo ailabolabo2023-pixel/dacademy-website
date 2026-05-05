@@ -166,23 +166,20 @@ export default function Home() {
             <p className="jp-sub-title">選べる５つのサポート</p>
           </div>
 
-          {/* 上段：個人向けのスキルアップ (3枚) */}
+          {/* 上段：3枚 */}
           <div className="services-grid-top">
-            {/* カード1：3時間集中セミナー */}
             <Link to="/programs" className="service-card card-cyan">
               <div className="service-img-wrap">
                 <img src="/images/3時間集中セミナー.png" alt="3時間集中セミナー" className="service-img" />
               </div>
             </Link>
 
-            {/* カード2：SRP 3日間コース */}
             <Link to="/programs" className="service-card card-magenta">
               <div className="service-img-wrap">
                 <img src="/images/SPR３日間コース.png" alt="SRP 3日間コース" className="service-img" />
               </div>
             </Link>
 
-            {/* カード3：インプラントメインテナンスセミナー */}
             <Link to="/programs" className="service-card card-yellow">
               <div className="service-img-wrap">
                 <img src="/images/インプラントメインテナンス.png" alt="インプラントメインテナンスセミナー" className="service-img" />
@@ -190,20 +187,25 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* 下段：医院全体・継続学習向け (2枚) */}
+          {/* 下段：2枚 */}
           <div className="services-grid-bottom">
-            {/* カード4：オーダーメイド医院訪問研修 */}
             <Link to="/programs" className="service-card card-cyan">
               <div className="service-img-wrap">
                 <img src="/images/オーダーメイド医院訪問研修.png" alt="オーダーメイド医院訪問研修" className="service-img" />
               </div>
             </Link>
 
-            {/* カード5：ZOOM座談会 */}
             <Link to="/programs" className="service-card card-magenta">
               <div className="service-img-wrap">
-                <img src="/images/オンライン雑談会ZOOM.png" alt="ZOOM座談会" className="service-img" />
+                <img src="/images/オンライン雑談会ZOOM.png" alt="ZOOM雑談会" className="service-img" />
               </div>
+            </Link>
+          </div>
+
+          {/* CTAボタン */}
+          <div className="services-cta-wrap">
+            <Link to="/contact" className="services-cta-btn">
+              お問い合わせ・お申込みはこちら <span>›</span>
             </Link>
           </div>
         </div>
@@ -309,6 +311,27 @@ export default function Home() {
               公式Instagramを見る
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* お問い合わせ・申し込みセクション */}
+      <section className="home-contact-section">
+        <div className="home-contact-bg">
+          <img
+            src="/images/申し込みバック画像.png"
+            alt="お問い合わせ・お申込み"
+            className="home-contact-bg-img pc-only"
+          />
+          <img
+            src="/images/申し込みバック画像スマホ用.png"
+            alt="お問い合わせ・お申込み"
+            className="home-contact-bg-img sp-only"
+          />
+        </div>
+        <div className="home-contact-btn-area">
+          <Link to="/contact" className="home-contact-cta-btn">
+            お問い合わせ・お申込みはこちら <span>›</span>
+          </Link>
         </div>
       </section>
     </div>
