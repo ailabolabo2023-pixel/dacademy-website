@@ -1,105 +1,192 @@
-.prog-hero {
-  text-align: center;
-  padding: 100px 0 60px;
+/* Programs.css */
+
+.programs-page {
+  background-color: #fcfcfc;
+  color: var(--color-text);
 }
-.prog-hero-subtext {
+
+/* --- 1. ヒーローセクション --- */
+.programs-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9; /* 用意された画像の比率に近い設定。引き伸ばしを防ぎます */
+  min-height: 400px; /* 縮みすぎ防止 */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 4px solid var(--color-text); /* ポップアート風の区切り線 */
+}
+
+/* スライダー背景 */
+.programs-hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.programs-hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out; /* ふんわり切り替わる */
+}
+
+.programs-hero-img.active {
+  opacity: 1;
+}
+
+/* コンテナを左寄せにする（既存の中央寄せを完全に上書き） */
+.programs-hero-container {
+  margin: 0 0 0 8% !important; /* PC: 左から8%の位置に固定 */
+  margin-right: auto !important;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* タブレット用の調整 */
+@media (max-width: 1024px) {
+  .programs-hero-container {
+    margin: 0 0 0 5% !important; /* タブレット: 左から5% */
+  }
+}
+
+/* テキストエリアの保護レイヤー（左側だけ少し白くする） */
+.programs-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0) 60%);
+  z-index: 1;
+}
+
+/* コンテンツエリア（白背景のカード） */
+.programs-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+  height: auto; /* 高さは中身に合わせる */
+  margin-top: 80px; /* カードの上に十分な余白 */
+  margin-bottom: 80px; /* カードの下にも十分な余白 */
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 4px solid var(--color-text); /* アメコミ風の枠 */
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px); /* 背景を少しぼかす */
+  border-radius: 8px;
+  text-align: left; /* 文字も強制的に左寄せ */
+}
+
+/* タイトル周り */
+.programs-title-wrapper {
+  margin-bottom: 30px;
+}
+
+.programs-hero-title-en {
+  font-size: 3.5rem;
+  color: var(--color-magenta);
+  margin-bottom: 0;
+}
+
+.programs-hero-title-ja {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #112233;
+  letter-spacing: 0.1em;
+  margin-top: 5px;
+}
+
+/* キャッチコピー（ゆっくり切り替わるアニメーション付き） */
+.programs-hero-catch {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #112233;
+  line-height: 1.5;
+  margin-bottom: 30px;
+  /* 急に変わるのを防ぐため、1.5秒かけてゆっくり現れる設定に */
+  animation: text-slow-fade 1.5s ease-out forwards;
+}
+
+@keyframes text-slow-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px); /* 動きも少し控えめにして上品に */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 「Dacademyとは」と同じ強調テキスト＆横棒アニメーション */
+.programs-hero-catch .highlight-text {
+  color: var(--color-magenta);
+  position: relative;
   display: inline-block;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 10px 20px;
-  border: 4px solid var(--color-text);
-  margin-top: 20px;
-  font-family: var(--font-heading);
 }
-.bg-white {
-  background-color: var(--color-base);
+
+.programs-hero-catch .highlight-text::after {
+  content: "";
+  position: absolute;
+  bottom: 4px; /* 下に引く線の位置 */
+  left: 0;
+  width: 0;
+  height: 8px; /* 線の太さ */
+  background-color: rgba(255, 0, 85, 0.2); /* マーカー風のピンク色 */
+  z-index: -1;
+  /* 文字が現れた後（0.8秒後）に、ゆっくり横棒が伸びる */
+  animation: drawUnderline 1s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
 }
-.prog-intro {
-  margin: 40px auto;
-  max-width: 800px;
-  padding: 30px;
+
+@keyframes drawUnderline {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* 本文 */
+.programs-hero-text {
   font-size: 1.1rem;
   line-height: 1.8;
-  border-radius: 10px;
+  color: #445566;
+  font-weight: 600;
 }
 
-.text-magenta {
-  text-shadow: 2px 2px 0 var(--color-magenta), -1px -1px 0 var(--color-magenta), 1px -1px 0 var(--color-magenta), -1px 1px 0 var(--color-magenta), 1px 1px 0 var(--color-magenta);
-}
-.text-cyan {
-  text-shadow: 2px 2px 0 var(--color-cyan), -1px -1px 0 var(--color-cyan), 1px -1px 0 var(--color-cyan), -1px 1px 0 var(--color-cyan), 1px 1px 0 var(--color-cyan);
-}
+/* スマホ対応 */
+@media (max-width: 768px) {
+  .programs-hero {
+    min-height: auto;
+    aspect-ratio: auto;
+    padding: 120px 0 80px;
+  }
+  
+  .programs-hero-container {
+    margin: 0 20px !important; /* スマホでは画面端から20pxの位置 */
+    padding: 0;
+  }
 
-.challenge-cards {
-  display: flex;
-  gap: 20px;
-  margin-top: 40px;
-}
-.card {
-  flex: 1;
-  background-color: var(--color-text);
-  color: var(--color-base);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 5px 5px 0 var(--color-magenta);
-}
-.card-title {
-  color: var(--color-yellow);
-  margin-bottom: 15px;
-}
+  .programs-hero-content {
+    max-width: 100%;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.85); /* スマホは文字を読みやすくするため濃いめに */
+  }
 
-.program-list {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin-top: 40px;
-}
-.program-item {
-  position: relative;
-  padding: 30px 40px 30px 80px;
-}
-.border-black {
-  border: 4px solid var(--color-text);
-}
-.shadow-cyan { box-shadow: 8px 8px 0 var(--color-cyan); }
-.shadow-magenta { box-shadow: 8px 8px 0 var(--color-magenta); }
-.shadow-yellow { box-shadow: 8px 8px 0 var(--color-yellow); }
+  .programs-hero-title-en {
+    font-size: 2.8rem;
+  }
 
-.badge {
-  position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: var(--color-text);
-  color: var(--color-base);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 900;
-  font-size: 1.5rem;
-  font-family: var(--font-heading);
-}
+  .programs-hero-catch {
+    font-size: 1.4rem;
+  }
 
-.voice-bubble {
-  max-width: 800px;
-  margin: 40px auto;
-  background-color: var(--color-base);
-  border: 4px solid var(--color-text);
-  padding: 40px;
-  border-radius: 40px;
-  border-bottom-left-radius: 0;
-  box-shadow: 8px 8px 0 var(--color-magenta);
-  font-weight: bold;
-  font-size: 1.2rem;
-  line-height: 1.8;
-  position: relative;
-}
-.voice-author {
-  display: block;
-  text-align: right;
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: #666;
+  .programs-hero-text {
+    font-size: 0.95rem;
+  }
 }
